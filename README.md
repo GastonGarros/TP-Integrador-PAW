@@ -1,4 +1,4 @@
-# TP-Integrador-PAW
+# TP-Integrador-
 Sistema de ventas de celulares y accesorios
 
 Presentación de la Idea
