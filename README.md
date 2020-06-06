@@ -2,7 +2,9 @@
 Sistema de ventas de celulares y accesorios
 
 Presentación de la Idea
+
 Fecha: 05/06/2020
+
 ● Propuesta general del sitio a desarrollar en forma de presupuesto funcional y
 temporal.
 
