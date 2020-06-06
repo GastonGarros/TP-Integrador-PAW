@@ -8,7 +8,7 @@ Lo que se plantea desarrollar es un sistema web el cual se encargará de gestion
 
 Nota: El diseño del sitio será una SPA (single-page application). En la carpeta [wireframes](https://github.com/GastonGarros/TP-Integrador-PAW/tree/master/Diagramas/Wireframes) pueden verse los wireframes tentativos para cada sección, así como también el [sitemap](https://github.com/GastonGarros/TP-Integrador-PAW/tree/master/Diagramas/Wireframes/Sitemap.png) del sitio:
 
-##Sección de Login/Sign Up:
+## Sección de Login/Sign Up:
 El sistema contará con un sistema de login que les permitirá a los usuarios identificarse dentro del sitio; o registrarse en caso de no haberlo hecho antes. 
 Existen 4 tipos de usuarios:
 * **No registrados:** Pueden visitar el sitio pero no pueden realizar compras.
