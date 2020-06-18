@@ -3,34 +3,37 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Home - Bytecell</title>
-	<link rel="stylesheet" href="public/css/style.css">
+	<link rel="stylesheet" href="view/css/style.css">
 	<script type="text/javascript" src="view/scripts/script.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<a href="#home">
 			<img src="view/css/images/bytecellLogo.png" alt="Logo de Bytecell">
 		</a>
+
+		<h1>Bienvenidos a Bytecell</h1>
+
+		<section class="contactInfoHeader">
+			<a href="#Contacto">
+				<span>Garroz Gastón<br></span>
+				<span>Calle 1 N° 234 entre 56 y 78 <br></span>
+				<span>Tel: 423456 Cel: 2323-1551607080 <br></span>
+			</a>
+		</section>
 	</header>
-
-	<h1>Bienvenidos a Bytecell</h1>
-
-	<section class="contactInfoHeader">
-		<span>Garroz Gastón<br></span>
-		<span>Calle 1 N° 234 entre 56 y 78 <br></span>
-		<span>Tel: 423456 Cel: 2323-1551607080 <br></span>
-	</section>
 
 	<nav>
 		<ul class="navBar">
-			<li><a class="navHome" href="#Home">Home</a></li>
-			<li><a class="navVentas" href="#Ventas">Ventas</a></li>
-			<li><a class="navContacto" href="#Contacto">Contáctenos</a></li>
+			<li><a class="navHome" href="#Home"><span>Home </span></a></li>
+			<li><a class="navVentas" href="#Ventas"><span>Ventas </span></a></li>
+			<li><a class="navContacto" href="#Contacto"><span>Contáctenos </span></a></li>
 		</ul>	
 		<section class="navLogin">
 			<form action="">
-				<label for="username">Usuario</label><input type="text" name="username">
-				<label for="password">Contraseña</label><input type="password" name="password">
+				<input type="text" name="username" placeholder="Usuario">
+				<input type="password" name="password" placeholder="Contraseña">
 				<input type="submit" value=">">
 			</form>
 			<a href="#">¿No estás registrado?</a>
@@ -38,6 +41,7 @@
 	</nav>
 
 	<section class="ventasSection">
+		<h2>Productos a la venta</h2>
 		<figure>
 			<a href="#"><img src="view/css/images/cell01.jpg" alt="Imagen del celular."></a>
 			<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
@@ -57,6 +61,7 @@
 	</section>
 
 	<section class="reparSection">
+		<h2>Reparaciones</h2>
 		<figure>
 			<img src="view/css/images/repairBG.jpg" alt="Imagen de fondo de la seccion de reparaciones.">
 			<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
@@ -65,6 +70,7 @@
 	</section>
 
 	<section class="contactoSection">
+		<h2>Contáctenos!</h2>
 		<figure>
 			<img src="view/css/images/localBG.jpg" alt="Imagen de fondo del local.">
 			<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>

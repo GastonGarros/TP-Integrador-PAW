@@ -1,8 +1,135 @@
-* {
+:root {
+	--byteBlue: rgb(50, 115, 168);
+	--byteBlueL: rgb(168, 216, 255);
+	--byteBlueD: rgb(27, 67, 99);
+	--byteFont: 'Sriracha', cursive;
+}
 
+* {
+	font-family: var(--byteFont);
 }
 
 body {
+	background-color: var(--byteBlueL);	
+}
 
+header {
+	background-color: var(--byteBlue);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em 0.5em;
+	border-bottom: 10px solid var(--byteBlueD);
+}
+
+header a {
+	
+}
+
+header a img {
+	width: 20vw;
+}
+
+header h1 {	
+	text-align: center;
+	text-decoration: none;
+	font-size: 30px;
+	color: var(--byteBlueL);
+}
+
+.contactInfoHeader {
+	text-align: right;
+}
+
+.contactInfoHeader a {
+	text-decoration: none;
+	color: var(--byteBlueL);
+}
+
+nav {
+	display: flex;
+}
+
+.navBar {
+	display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navBar li, .navBar>ul {
+	list-style-type: none;
+}
+
+.navBar li a {
+	display: inline-block;
+	border-radius: 0.2em;
+	background-color: var(--byteBlue);
+	color: var(--byteBlueL);
+	text-align: center;
+	font-size: 20px;
+	padding: 10px;
+	width: 15vw;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.navBar li a span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;	
+}
+
+.navBar li a span::after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.navBar li a:hover span {
+  	padding-right: 25px;
+}
+
+.navBar li a:hover span::after {
+	opacity: 1;
+	right: 0;
+}
+
+.navBar li a:hover {
+	background-color: var(--byteBlueD);
+}
+
+.navLogin {
+	padding: 2px;
+	margin-top: 0.1em;
+	position: absolute;
+	right: 0.5em;
+	text-align: center;
+	border: 1px solid var(--byteBlueD);
+	border-radius: 5px;
+}
+
+.navLogin input[type="submit"] {
+	background-color: var(--byteBlue);
+	color: var(--byteBlueL);
+	border: 2px solid var(--byteBlueD);
+	padding: 2px 10px;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.navLogin input[type="submit"]:hover {
+	background-color: var(--byteBlueD);
+}
+
+.navLogin a {
+	text-decoration: none;
+	font-size: 1em;
 }
 
