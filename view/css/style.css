@@ -1,7 +1,7 @@
 :root {
 	--byteBlue: rgb(50, 115, 168);
-	--byteBlueL: rgb(168, 216, 255);
-	--byteBlueD: rgb(27, 67, 99);
+	--byteBlueL: rgb(181, 241, 249);
+	--byteBlueD: rgb(0, 80, 117);
 	--byteFont: 'Sriracha', cursive;
 }
 
@@ -12,6 +12,10 @@
 body {
 	background-color: var(--byteBlueL);	
 }
+
+/* ----------------------- */
+/* -------- Header --------*/
+/* ----------------------- */
 
 header {
 	background-color: var(--byteBlue);
@@ -46,6 +50,10 @@ header h1 {
 	text-decoration: none;
 	color: var(--byteBlueL);
 }
+
+/* ----------------------------------- */
+/* -------- nav: menú + login -------- */
+/* ----------------------------------- */
 
 nav {
 	display: flex;
@@ -131,5 +139,118 @@ nav {
 .navLogin a {
 	text-decoration: none;
 	font-size: 1em;
+}
+
+/* -------------------------- */
+/* ---- Slider de ventas ---- */
+/* -------------------------- */
+
+.sliderContainer {
+	position: relative;
+}
+
+.mySlideLeft, .mySlideRight {
+	position: absolute;
+	width: 10%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.mySlideLeft {
+	left: 5em;
+}
+
+.mySlideRight {
+	right: 5em;
+}
+
+.mySlide {
+	width: 50%;
+	max-width: 600px;
+	max-height: 450px;
+	text-align: center;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	/*animation: blurAnimation .3s;*/
+	margin: 1em 0;
+}
+
+.sliderContainer figure img {
+	width: 100%;
+	min-width: 10vw;
+	min-height: 10vw;
+	max-width: 40vw;
+	max-height: 40vw;
+	border-radius: .5em;
+	border: 3px solid var(--byteBlueD);
+}
+
+.sliderContainer figure[style="display: block"] img {
+	max-width: 40vw;
+	max-height: 40vw;
+}
+
+.slideDesc {
+	width: 60%;
+	height: auto;
+	max-height: 10%	;
+	overflow: hidden;
+	color: var(--byteBlueD);
+	background-color: var(--byteBlueL);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: .5em;
+	font-size: .8em;
+	/*transform: translate(0%,-50%);*/
+}
+
+/*.anim {
+	animation-name: anim;
+	animation-duration: .5s;
+}*/
+
+/*@keyframes anim {
+	from {
+		transform: translateY(40%);
+		width: 10%;
+		position: relative;
+		left: 82%;
+		animation-timing-function: ease-in-out;
+	}
+	to {
+
+	}
+}*/
+
+.botonSliderIzq{
+	position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%,-50%);
+}
+
+.botonSliderDer{
+	position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(0%,-50%);
+}
+
+.botonSliderIzq, .botonSliderDer {
+	border: none;
+	color: var(--byteBlueD);
+	background-color: var(--byteBlue);
+	font-size: 2em;
+	padding: .5em;
+	transition: .2s;
+	cursor: pointer;
+}
+
+.botonSliderIzq:hover, .botonSliderDer:hover {
+	background-color: var(--byteBlueD);
+	color: var(--byteBlueL);
+	padding: .8em;
 }
 

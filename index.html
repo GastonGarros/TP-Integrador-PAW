@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Home - Bytecell</title>
 	<link rel="stylesheet" href="view/css/style.css">
-	<script type="text/javascript" src="view/scripts/script.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="view/scripts/slider.js"></script>
 </head>
 <body>
 	<header>
@@ -13,7 +13,7 @@
 			<img src="view/css/images/bytecellLogo.png" alt="Logo de Bytecell">
 		</a>
 
-		<h1>Bienvenidos a Bytecell</h1>
+		<h1 id="mainH1">Bienvenidos a Bytecell</h1>
 
 		<section class="contactInfoHeader">
 			<a href="#Contacto">
@@ -40,25 +40,37 @@
 		</section>
 	</nav>
 
+
 	<section class="ventasSection">
 		<h2>Productos a la venta</h2>
-		<figure>
-			<a href="#"><img src="view/css/images/cell01.jpg" alt="Imagen del celular."></a>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
-		</figure>
-		<figure>
-			<a href="#"><img src="view/css/images/cell02.jpg" alt="Imagen del celular."></a>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
-		</figure>
-		<figure>
-			<a href="#"><img src="view/css/images/cell03.jpg" alt="Imagen del celular."></a>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
-		</figure>
-		<figure>
-			<a href="#"><img src="view/css/images/cell04.jpg" alt="Imagen del celular."></a>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
-		</figure>
+		<article class="sliderContainer" id="sliderContainer">
+			<figure class="mySlide" style="display: block;">
+				<a href="#">
+					<img class="mySlideImg" src="view/css/images/cell01.jpg" alt="Imagen del celular.">
+					<figcaption class="slideDesc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
+				</a>
+			</figure>
+			<figure class="mySlide" style="display: block;">
+				<a href="#">
+					<img class="mySlideImg" src="view/css/images/cell02.jpg" alt="Imagen del celular.">
+					<figcaption class="slideDesc">ipisicing elit. Molestias modi, blanditiis voluptatu</figcaption>
+				</a>
+			</figure>
+			<figure class="mySlide" style="display: block;">
+				<a href="#">
+					<img class="mySlideImg" src="view/css/images/cell03.jpg" alt="Imagen del celular.">
+					<figcaption class="slideDesc">ariatur beatae distinctio sit cupiditate alias obc</figcaption>
+				</a>
+			</figure>
+			<figure class="mySlide" style="display: block;">
+				<a href="#">
+					<img class="mySlideImg" src="view/css/images/cell04.jpg" alt="Imagen del celular.">
+					<figcaption class="slideDesc">ati culpa numquam repellat dolores amet. Natus, adipisci.</figcaption>
+				</a>
+			</figure>
+		</article>
 	</section>
+
 
 	<section class="reparSection">
 		<h2>Reparaciones</h2>
@@ -80,6 +92,8 @@
 	<footer>		
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias modi, blanditiis voluptatum voluptatem fugit reiciendis accusamus pariatur beatae distinctio sit cupiditate alias obcaecati culpa numquam repellat dolores amet. Natus, adipisci.</p>
 	</footer>
+	
+
 	
 </body>
 </html>
