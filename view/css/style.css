@@ -11,6 +11,19 @@
 
 body {
 	background-color: var(--byteBlueL);	
+	margin: 0;
+}
+
+body footer {
+	background-color: rgb(36, 39, 41);
+	color: var(--byteBlueL);
+	border-top: 1em solid var(--byteBlueD);
+}
+
+body footer p {
+	padding: 2em 1em;
+	margin: 0;
+	font-size: 1.2em;
 }
 
 /* ----------------------- */
@@ -19,6 +32,7 @@ body {
 
 header {
 	background-color: var(--byteBlue);
+	background-image: linear-gradient(var(--byteBlueL), var(--byteBlueD), var(--byteBlue));
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -55,21 +69,22 @@ header h1 {
 /* -------- nav: menú + login -------- */
 /* ----------------------------------- */
 
-nav {
+.navContainer {
 	display: flex;
+	position: static;
 }
 
-.navBar {
+.navContainer .navBar {
 	display: flex;
     margin: 0;
     padding: 0;
 }
 
-.navBar li, .navBar>ul {
+.navContainer .navBar li, .navContainer .navBar>ul {
 	list-style-type: none;
 }
 
-.navBar li a {
+.navContainer .navBar li a {
 	display: inline-block;
 	border-radius: 0.2em;
 	background-color: var(--byteBlue);
@@ -83,14 +98,14 @@ nav {
 	margin: 5px;
 }
 
-.navBar li a span {
+.navContainer .navBar li a span {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
 	transition: 0.5s;	
 }
 
-.navBar li a span::after {
+.navContainer .navBar li a span::after {
 	content: '\00bb';
 	position: absolute;
 	opacity: 0;
@@ -99,20 +114,20 @@ nav {
 	transition: 0.5s;
 }
 
-.navBar li a:hover span {
+.navContainer .navBar li a:hover span {
   	padding-right: 25px;
 }
 
-.navBar li a:hover span::after {
+.navContainer .navBar li a:hover span::after {
 	opacity: 1;
 	right: 0;
 }
 
-.navBar li a:hover {
+.navContainer .navBar li a:hover {
 	background-color: var(--byteBlueD);
 }
 
-.navLogin {
+.navContainer .navLogin {
 	padding: 2px;
 	margin-top: 0.1em;
 	position: absolute;
@@ -122,7 +137,7 @@ nav {
 	border-radius: 5px;
 }
 
-.navLogin input[type="submit"] {
+.navContainer .navLogin input[type="submit"] {
 	background-color: var(--byteBlue);
 	color: var(--byteBlueL);
 	border: 2px solid var(--byteBlueD);
@@ -132,18 +147,132 @@ nav {
 	cursor: pointer;
 }
 
-.navLogin input[type="submit"]:hover {
+.navContainer .navLogin input[type="submit"]:hover {
 	background-color: var(--byteBlueD);
 }
 
-.navLogin a {
+.navContainer .navLogin a {
 	text-decoration: none;
 	font-size: 1em;
 }
 
-/* -------------------------- */
-/* ---- Slider de ventas ---- */
-/* -------------------------- */
+.navContainer .navLogin a span {
+	margin: 0;
+}
+
+/* ------------------------- */
+/* -------- miniNav -------- */
+/* ------------------------- */
+
+.navContainerMini {
+	display: flex;
+	justify-content: center;
+	position: sticky;
+	top: 0;
+	background-color: var(--byteBlue);
+	z-index: 100;
+	padding: .5em 0;
+	border-bottom: 4px solid var(--byteBlueD);
+}
+
+.navContainerMini .navBar {
+	display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navContainerMini .navBar li, .navContainerMini .navBar>ul {
+	list-style-type: none;
+
+}
+
+.navContainerMini .navBar li a {
+	display: inline-block;
+	border-radius: 0.2em;
+	background-color: var(--byteBlueL);
+	color: var(--byteBlueD);
+	text-align: center;
+	font-size: 15px;
+	padding: 5px;
+	width: 7vw;
+	transition: all .2s;
+	cursor: pointer;
+	margin: 3px;
+}
+
+.navContainerMini .navBar li a span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0;	
+}
+
+.navContainerMini .navBar li a span::after {
+	content: '';
+	position: static;
+	opacity: 1;
+	top: 0;
+	right: 0;
+	transition: 0;
+}
+
+.navContainerMini .navBar li a:hover span {
+  	padding-right: 0;
+}
+
+.navContainerMini .navBar li a:hover span::after {
+	opacity: 1;
+	right: 0;
+}
+
+.navContainerMini .navBar li a:hover {
+	background-color: var(--byteBlueD);
+	color: var(--byteBlueL);
+}
+
+.navContainerMini .navLogin {
+	padding: 2px;
+	margin-top: 0.1em;
+	position: absolute;
+	right: 0.5em;
+	text-align: center;
+	border: none;
+	border-radius: 0;
+}
+
+.navContainerMini .navLogin input[type="submit"] {
+	background-color: var(--byteBlueL);
+	color: var(--byteBlueD);
+	border: 2px solid rgb(36, 39, 41);
+	padding: 2px 10px;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.navContainerMini .navLogin input[type="submit"]:hover {
+	background-color: var(--byteBlueD);
+	color: var(--byteBlueL);
+}
+
+.navContainerMini .navLogin a {
+	text-decoration: none;
+	font-size: 0;
+}
+
+
+/* ---------------------------------- */
+/* ---- Sección/Slider de ventas ---- */
+/* ---------------------------------- */
+
+.ventasSection {
+	margin-bottom: 12vw;
+	text-align: center;
+}
+
+.ventasSection h2, .reparSection h2, .contactoSection h2 {
+	font-size: 2.2em;
+}
 
 .sliderContainer {
 	position: relative;
@@ -172,12 +301,12 @@ nav {
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
-	/*animation: blurAnimation .3s;*/
 	margin: 1em 0;
 }
 
 .sliderContainer figure img {
 	width: 100%;
+	height: auto;
 	min-width: 10vw;
 	min-height: 10vw;
 	max-width: 40vw;
@@ -192,18 +321,34 @@ nav {
 }
 
 .slideDesc {
-	width: 60%;
+	width: 100%;
 	height: auto;
-	max-height: 10%	;
+	max-width: 80%;
+	max-height: 5%;
 	overflow: hidden;
-	color: var(--byteBlueD);
-	background-color: var(--byteBlueL);
+	color: var(--byteBlueL);
+	background-color: rgba(50, 115, 168, .8);
 	position: absolute;
-	bottom: 0;
-	right: 0;
+	top: 0;
 	padding: .5em;
-	font-size: .8em;
+	font-size: 1em;
+	transition: .5s;
+	transform: translateX(10%);
+	border-radius: 2em;
 	/*transform: translate(0%,-50%);*/
+}
+
+.slideDesc:hover {
+	border: 2px solid var(--byteBlueD);
+	border-radius: 0;
+	max-height: 30%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: rgba(50, 115, 168, 1);
+	transition: .3s;
+	border-top-left-radius: .5em;
+	/*max-width: 100%;
+	transform: translateX(0);*/
 }
 
 /*.anim {
@@ -254,3 +399,128 @@ nav {
 	padding: .8em;
 }
 
+/* ------------------------------ */
+/* ---- Sección reparaciones ---- */
+/* ------------------------------ */
+
+.reparSection {
+	position: relative;
+	border-top: .5em dotted var(--byteBlueD);
+	padding: 1em;
+	margin-bottom: 5vw;
+	text-align: center;
+}
+
+.reparSection::after {
+	content: "";
+	background-image: url(images/repairBG.png);
+	opacity: 0.3;
+	background-repeat: no-repeat;
+	top: 0;
+	left: 50%;
+	bottom: 0;
+	right: 0;
+	transform: translateX(-50%);
+	position: absolute;
+	z-index: -1;
+	margin-top: 1em;
+}
+
+.reparSection p {
+	font-size: 1.7em;
+}
+
+.reparSection button {
+	background-color: var(--byteBlue);
+	border: 2px solid var(--byteBlueD);
+	border-radius: 10px;
+	color: var(--byteBlueL);
+	margin: 0;
+	padding: 1em;
+	font-size: 2em;
+	cursor: pointer;
+	box-shadow: 0 9px #999;
+	opacity: 0.8;
+}
+
+.reparSection button:hover {
+	opacity: 1;
+}
+
+.reparSection button:active {
+	background-color: var(--byteBlueD);
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+}
+
+/* ----------------------------- */
+/* ---- Sección de contacto ---- */
+/* ----------------------------- */
+
+.contactoSection {
+	position: relative;
+	border-top: .5em dotted var(--byteBlueD);
+	padding: 1em;
+	margin-bottom: 5vw;
+	text-align: center;
+}
+
+.contactoSection::after {
+	content: "";
+	background-image: url(images/localBG.png);
+	opacity: 0.3;
+	background-repeat: no-repeat;
+	top: 0;
+	left: 50%;
+	bottom: 0;
+	right: 0;
+	transform: translateX(-50%);
+	position: absolute;
+	z-index: -1;
+	margin-top: 1em;
+}
+
+.contactoSection p {
+	font-size: 1.7em;
+}
+
+/* ------------------------ */
+/* ---- goToTop button ---- */
+/* ------------------------ */
+
+.goToTop {
+    display: none;
+    position: fixed;
+    bottom: 1em;
+    right: 2em;
+    z-index: 150;
+    border-width: 3px;
+    border-color: #f2f2f2;
+    border-style: outset;
+    box-shadow: 2px 2px 7px rgba(0,0,0,.6);
+    border-radius: 50%;
+    outline: none;
+    background-color: var(--byteBlue);
+    color: var(--byteBlueL);
+    cursor: pointer;
+    padding: .6em .9em;
+    font-size: 1.2em;
+}
+
+.goToTop:hover {
+	background-color: var(--byteBlueD);  	
+	transform-origin: 50% 50%;
+  	animation: jumpAnimation .5s;
+}
+
+/* -------------------- */
+/* ---- animations ---- */
+/* -------------------- */
+
+@keyframes jumpAnimation {
+  	0%   {transform: translateY(0%);}
+  	25%  {transform: translateY(-20%);}
+	50%  {transform: translateY(10%);}
+	75%  {transform: translateY(-20%);}
+  	100% {transform: translateY(0%);}
+}

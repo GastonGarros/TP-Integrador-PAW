@@ -4,6 +4,10 @@ document.getElementById("mainH1").innerHTML = a;
 alert(TEST);
 */
 
+// ########################################
+// ###### Funciones para los sliders ######
+// ########################################
+
 // Creando los botones para los sliders y su contenido
 function createButtonsSlider(contenedorId) {
       var contenedor = document.getElementById(contenedorId),
@@ -117,16 +121,51 @@ function showDivs(n) { // Sumarle o restarle 1 a la slide actual y mostrarla
 
 }
 
-// Comienzo del script
-var slideIndex = 0; // Variable global que contiene el índice actual del slider de ventas
-window.onload = function() {
+// ##########################################
+// ###### Funciones para goToTopButton ######
+// ##########################################
+
+function goToTopFunction() { // Función que hace scroll top
+    document.documentElement.scrollTop = 0;
+}
+
+// ############################################
+// ###### Comienzo del código del Script ######
+// ############################################
+
+var slideIndex = 0; // Global
+window.onload = function() { // Todo el código se carga luego de que se haya cargado el documento
+      // #### Declaración de vaiables no-globales ####
+      var goToTopButton = document.getElementById("goToTop");
+
+
+
+      // #### Código para el manejo del slider ####
       if (document.getElementsByClassName("mySlide").length > 0) { // Verifico que efectivamente haya imágenes para mostrar en el slider
             var sliderContainerId = "sliderContainer"; // ID del contenedor del slider
-
-            createButtonsSlider(sliderContainerId);
-            if (document.getElementsByClassName("mySlide").length > 2) { createSliderMinis(sliderContainerId); }
-            showDivs(1); // Dado que slideIndex se inicializa en 0, le sumo 1 la primera vez, para que la primera slide a mostrar sea la primera
+            createButtonsSlider(sliderContainerId); // Llamo a la función para crear los botones del slider, pasandole el contenedor
+            if (document.getElementsByClassName("mySlide").length > 2) { createSliderMinis(sliderContainerId); } // Sólo creo miniaturas para el slider si hay más de dos imágenes en el slider
+            showDivs(1); // Dado que slideIndex se inicializa en 0, le sumo 1 la primera vez, para que la primera slide a mostrar sea siempre la primera
       }
+
+
+
+      // #### Código para el manejo del goToTopButton y el cambio del nav al scrollear ####
+      goToTopButton.addEventListener("click", goToTopFunction); // Le doy el evento al botón goToTopButton
+      window.onscroll = function() {scrollFunction()}; // Cuando se hace scroll, se llama la la función scrollFunction
+
+      function scrollFunction() {
+          if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) { // Si el scroll es lo suficientemente bajo...
+              goToTopButton.style.display = "block"; // Se muestra el botón goToTopButton
+              document.getElementById("navContainer").className = "navContainerMini"; // Le cambio la clase al nav para que se muestre más compacto
+          } else { // Si el scroll NO es lo suficientemente bajo...
+              goToTopButton.style.display = "none"; // Oculto el botón goToTopButton
+              document.getElementById("navContainer").className = "navContainer"; // Le cambio la clase al nav para que se muestre con normalidad
+          }
+      }
+
+      // ####  ####
+
 }
 
 
