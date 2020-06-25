@@ -1,6 +1,7 @@
 /*
 var a = "TESTING";
 document.getElementById("mainH1").innerHTML = a;
+console.log(a);
 alert(TEST);
 */
 
@@ -134,7 +135,7 @@ function goToTopFunction() { // Función que hace scroll top
 // ############################################
 
 var slideIndex = 0; // Global
-window.onload = function() { // Todo el código se carga luego de que se haya cargado el documento
+document.addEventListener("DOMContentLoaded", function () { // Todo el código se carga luego de que se haya cargado el documento
       // #### Declaración de vaiables no-globales ####
       var goToTopButton = document.getElementById("goToTop");
 
@@ -166,6 +167,6 @@ window.onload = function() { // Todo el código se carga luego de que se haya ca
 
       // ####  ####
 
-}
+});
 
 

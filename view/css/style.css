@@ -41,10 +41,6 @@ header {
 	border-bottom: 10px solid var(--byteBlueD);
 }
 
-header a {
-	
-}
-
 header a img {
 	width: 20vw;
 }
@@ -195,7 +191,7 @@ header h1 {
 	font-size: 15px;
 	padding: 5px;
 	width: 7vw;
-	transition: all .2s;
+	transition: all 1s;
 	cursor: pointer;
 	margin: 3px;
 }
