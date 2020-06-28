@@ -22,7 +22,7 @@ public function findAll(){
 
 public function find($id){
    
-   return parent::findId($this->primaryKey,$id,$this->tableHija);
+   return parent::findId($this->primaryKey,$id,$this->table);
 }
 
 public function deleteUser($valor){
