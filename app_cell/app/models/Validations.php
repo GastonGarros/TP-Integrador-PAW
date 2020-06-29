@@ -179,7 +179,7 @@ public function ValidUser($user,$pass,$email,$rol){
 //Almacena una img valida y devuelve el path relativo de la misma
 //En el archivo README.md hay una explicacion con mayor detalle de lo que contiene cada variable
 public function saveImg($imgSubida){
-	 $imgFolderPath = getcwd(). '\\' . "images" . '\\'; //Path de la carpeta donde se guardan las imgs
+	 $imgFolderPath = "app_cell/image/"; //Path de la carpeta donde se guardan las imgs
 	 $imgName = basename($imgSubida['name']); 			//nombreImg.extension
 	 $imgExt = substr($imgName,strrpos($imgName,'.')+0);//Extension de la img con el punto
 	 $theTime = time();
@@ -188,7 +188,7 @@ public function saveImg($imgSubida){
 	 $imgRelName = "";
 
 	 if (move_uploaded_file($imgSubida['tmp_name'], $imgFileName)) {
-	 	$imgRelName = "images" . '\\' . $hashedName;//path relativo a la img
+	 	$imgRelName = "app_cell/images/" . $hashedName;//path relativo a la img
 	 }
 
 	 return ($imgRelName);

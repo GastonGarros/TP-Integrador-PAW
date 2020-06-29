@@ -19,12 +19,20 @@ class ProductoController{
     public function store($request, $response, $args)
     {
         $params = $request->getParsedBody();
-       
-        $id = $this->model->insert("Producto",$params);
-        $response->getBody()->write(\json_encode($params));
+         $id = $this->model->insertProducto($params);
+      //  $id = $this->model->insert("Producto",$params);
+        $response->getBody()->write(\json_encode($id));
         return $response->withHeader('Content-Type', 'application/json');  
 
     } 
+
+     public function read($request, $response, $args){
+        $producto = $this->model->find($args['id']);
+        $response->getBody()->write(\json_encode($producto));
+        return $response->withHeader('Content-Type', 'application/json');
+
+       
+    }
     
     public function delete ($request, $response,$args){
      
@@ -32,4 +40,11 @@ class ProductoController{
         $response->getBody()->write(\json_encode($rep));
         return $response->withHeader('Content-Type', 'application/json');  
     }
+    public function busqueda ($request, $response,$args){
+     
+        $rep = $this->model->busquedap($args['id']);
+        $response->getBody()->write(\json_encode($rep));
+        return $response->withHeader('Content-Type', 'application/json');  
+    }
+
 }   

@@ -47,6 +47,7 @@ return function (App $app) {
   
    //Metodos sobre Productos
     $app->get('/productos', 'ProductoController:index');
+    $app->get('/productos/busqueda/{id}', 'ProductoController:busqueda');
     $app->get('/productos/{id}', 'ProductoController:read');
     $app->post('/productos', 'ProductoController:store');
     $app->delete('/productos/{id}', 'ProductoController:delete'); 

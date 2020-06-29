@@ -30,7 +30,7 @@ class Base  {
         $sentencia = $this->db->prepare("SELECT * FROM .$table");    
         $sentencia->execute();    
 
-        $this->log->info('listo el contenido de '.$table);
+       // $this->log->info('listo el contenido de '.$table);
         
         return $sentencia->fetchAll();        
     }
@@ -38,6 +38,8 @@ class Base  {
     
     public function insert($table, $parameters)
     { 
+        //falta descriminar si el producto ya esta cargado pero con estado 0
+        
         $sql = "INSERT INTO
         $table
         (".implode(', ', array_keys($parameters)).")
@@ -45,7 +47,7 @@ class Base  {
         (:". implode(', :', array_keys($parameters)).")";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute($parameters);
-      //  $this->log->info('INSERT EN '.$table .' los parametros '.$parameters);
+        $this->log->info('INSERT EN '.$table .' los parametros '.implode(" ,",$parameters));
         return $this->db->lastInsertId(); 
      
     }
@@ -73,7 +75,8 @@ class Base  {
             $statement = $this->db->prepare($sql);
            
             $statement->execute(array_values( $parameters));
-            $this->log->info('UPDATE en '.$table .' los parametros '.$parameters);
+            //log con los parametros
+            $this->log->info("UPDATE en ".$table ." los parametros ".implode(" ,",$parameters));
            return $this->db->lastInsertId();
             
     }
