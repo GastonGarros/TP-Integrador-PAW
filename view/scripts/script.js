@@ -165,6 +165,18 @@ document.addEventListener("DOMContentLoaded", function () { // Todo el código s
           }
       }
 
+      // #### Código para el manejo del slider ####
+      /*var ex = document.getElementsByClassName("mySlide");
+      console.log(ex);
+      console.log(ex[0]);
+      console.log(ex.length);*/
+      if (document.getElementsByClassName("mySlide").length > -1) { // 0 Verifico que efectivamente haya imágenes para mostrar en el slider
+            var sliderContainerId = "sliderContainer"; // ID del contenedor del slider
+            createButtonsSlider(sliderContainerId); // Llamo a la función para crear los botones del slider, pasandole el contenedor
+            if (document.getElementsByClassName("mySlide").length > -1) { createSliderMinis(sliderContainerId); } // 2 Sólo creo miniaturas para el slider si hay más de dos imágenes en el slider
+            showDivs(1); // Dado que slideIndex se inicializa en 0, le sumo 1 la primera vez, para que la primera slide a mostrar sea siempre la primera
+      }
+
       // ####  ####
 
 });
