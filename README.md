@@ -36,3 +36,17 @@ Cabe mencionar que, de llevarse a cabo, esta funcionalidad no pretende dar un pr
 
 ## Sección de contacto:
 La sección de contacto será una sección simple en la cual se le mostrará al usuario la información de la empresa y todas las formas con las que puede ponerse en contacto con la misma.
+
+
+## Instalación:
+
+La única dependencia obligatoria para instalar es la librería de XML de PHP.
+
+sudo apt-get install php-xml
+Luego, clonamos la aplicación nos posicionamos en el directorio App_cell.
+
+cd ~/TP-Integrador-PAW/app_cell
+
+Finalizado el proceso, ejecutamos el Servidor Web Stand-alone de PHP
+
+php -S localhost:8000 -t public
