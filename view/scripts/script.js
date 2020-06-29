@@ -113,7 +113,6 @@ function showDivs(n) { // Sumarle o restarle 1 a la slide actual y mostrarla
             slides[i].style.display = "none";
             if (hasMiniSlides) {imgsSrc[i] = imgs[i].getAttribute("src");} // Aprovecho este bucle para cargar los nombres de las imágenes
       }
-
       slides[slideIndex-1].style.display = "block"; // Luego, muestro sólo la imagen correspondiente
       if (hasMiniSlides){
             document.getElementById("mySlideLeftImg").setAttribute("src", imgsSrc[slideIndexLeft-1]); // Actualizo el campo "src" de la miniatura izquierda
@@ -136,27 +135,28 @@ function goToTopFunction() { // Función que hace scroll top
 
 var slideIndex = 0; // Global
 document.addEventListener("DOMContentLoaded", function () { // Todo el código se carga luego de que se haya cargado el documento
-      // #### Declaración de vaiables no-globales ####
-      var goToTopButton = document.getElementById("goToTop");
-
-
-
-      // #### Código para el manejo del slider ####
-      if (document.getElementsByClassName("mySlide").length > 0) { // Verifico que efectivamente haya imágenes para mostrar en el slider
-            var sliderContainerId = "sliderContainer"; // ID del contenedor del slider
-            createButtonsSlider(sliderContainerId); // Llamo a la función para crear los botones del slider, pasandole el contenedor
-            if (document.getElementsByClassName("mySlide").length > 2) { createSliderMinis(sliderContainerId); } // Sólo creo miniaturas para el slider si hay más de dos imágenes en el slider
-            showDivs(1); // Dado que slideIndex se inicializa en 0, le sumo 1 la primera vez, para que la primera slide a mostrar sea siempre la primera
+      // #### Código para AJAX firsLoad ####
+      for (var i = 0; i < 4; i++){
+            var a = new AJAX("testJSON" + i, function(response) {
+                  var p = new sliderLoader(response);
+                  p.sliderFirstLoad();
+            });
       }
 
+      /*for (var i in imgSlider) {
+            var imgAttrOnclick;
+            imgAttrOnclick = "getImgData(\"" + i + "\")"; // Esta variable contiene el contenido del atributo "onclick"
+            imgSlider[i].setAttribute("onclick", imgAttrOnclick); // Inserto el atributo en la img    
+      }*/
 
 
       // #### Código para el manejo del goToTopButton y el cambio del nav al scrollear ####
+      var goToTopButton = document.getElementById("goToTop");
       goToTopButton.addEventListener("click", goToTopFunction); // Le doy el evento al botón goToTopButton
       window.onscroll = function() {scrollFunction()}; // Cuando se hace scroll, se llama la la función scrollFunction
 
       function scrollFunction() {
-          if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) { // Si el scroll es lo suficientemente bajo...
+          if (document.body.scrollTop > 450 || document.documentElement.scrollTop > 450) { // Si el scroll es lo suficientemente bajo...
               goToTopButton.style.display = "block"; // Se muestra el botón goToTopButton
               document.getElementById("navContainer").className = "navContainerMini"; // Le cambio la clase al nav para que se muestre más compacto
           } else { // Si el scroll NO es lo suficientemente bajo...

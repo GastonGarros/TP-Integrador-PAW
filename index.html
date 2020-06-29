@@ -5,9 +5,10 @@
 	<title>Home - Bytecell</title>
 	<link rel="stylesheet" href="view/css/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
-	<script type="text/javascript" src="view/scripts/script.js"></script>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<script type="text/javascript" src="view/scripts/ajax.js"></script>
-
+	<script type="text/javascript" src="view/scripts/script.js"></script>
+	<script type="text/javascript" src="view/test/test.js"></script>
 </head>
 <body>
 	<button class="goToTop" id="goToTop">&#8679;</button>
@@ -29,9 +30,9 @@
 
 	<nav class="navContainer" id="navContainer">
 		<ul class="navBar">
-			<li><a class="navHome" href="#Home"><span>Home </span></a></li>
-			<li><a class="navVentas" href="#Ventas"><span>Ventas </span></a></li>
-			<li><a class="navContacto" href="#Contacto"><span>Contáctenos </span></a></li>
+			<li><a class="navVentas" href="#ventas"><span>Ventas </span></a></li>
+			<li><a class="navReparaciones" href="#reparaciones"><span>Reparaciones </span></a></li>
+			<li><a class="navContacto" href="#contacto"><span>Contáctenos </span></a></li>
 		</ul>	
 		<section class="navLogin">
 			<form action="">
@@ -44,45 +45,52 @@
 	</nav>
 
 
-	<section class="ventasSection">
+	<section class="ventasSection" id="ventas">
 		<h2>Productos a la venta</h2>
 		<article class="sliderContainer" id="sliderContainer">
-			<figure class="mySlide" style="display: block;">
+			<!--<figure class="mySlide" style="display: block;">
 				<img class="mySlideImg" src="view/css/images/cell01.jpg" alt="Imagen del celular.">
 				<figcaption class="slideDesc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
+				<div class="divIdImg">20</div>
 			</figure>
 			<figure class="mySlide" style="display: block;">
 				<img class="mySlideImg" src="view/css/images/cell02.jpg" alt="Imagen del celular.">
 				<figcaption class="slideDesc">ipisicing elit. Molestias modi, blanditiis voluptatu ipisicing elit. Molestias modi, blanditiis voluptatu ipisicing elit. Molestias modi, blanditiis voluptatu ipisicing elit. Molestias modi, blanditiis voluptatu ipisicing elit. Molestias modi, blanditiis voluptatu ipisicing elit. Molestias modi, blanditiis voluptatu</figcaption>
+				<div class="divIdImg">21</div>
 			</figure>
 			<figure class="mySlide" style="display: block;">
 				<img class="mySlideImg" src="view/css/images/cell03.jpg" alt="Imagen del celular.">
 				<figcaption class="slideDesc">ariatur beatae distinctio sit cupiditate alias obc ariatur beatae distinctio sit cupiditate alias obc ariatur beatae distinctio sit cupiditate alias obc ariatur beatae distinctio sit cupiditate alias obc</figcaption>
+				<div class="divIdImg">22</div>
 			</figure>
 			<figure class="mySlide" style="display: block;">
 				<img class="mySlideImg" src="view/css/images/cell04.jpg" alt="Imagen del celular.">
 				<figcaption class="slideDesc">ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci. ati culpa numquam repellat dolores amet. Natus, adipisci.</figcaption>
+				<div class="divIdImg">23</div>
 			</figure>
-			<!--<figure class="mySlide" style="display: block;">
+			<figure class="mySlide" style="display: block;">
 				<img class="mySlideImg" src="view/css/images/repairBG.png" alt="Imagen del celular.">
 				<figcaption class="slideDesc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
+				<div class="divIdImg">24</div>
 			</figure>
 			<figure class="mySlide" style="display: block;">
 				<img class="mySlideImg" src="view/css/images/bytecellLogo.png" alt="Imagen del celular.">
 				<figcaption class="slideDesc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</figcaption>
+				<div class="divIdImg">25</div>
 			</figure>-->
+			<button class="addToCart"></button>
 		</article>
 	</section>
 
 
-	<section class="reparSection">
+	<section class="reparSection" id="reparaciones">
 		<h2>Reparaciones</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo nulla unde sed rem a, ratione dolorum aperiam tempore magni expedita. Itaque accusamus eum labore nostrum ducimus, maxime error tempore veniam?</p>
 		<button>Diagnóstico en tiempo real</button>	
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum iure quo asperiores qui, quibusdam cum aliquid alias odio atque est ex incidunt excepturi, accusamus aspernatur dolores, nobis eius voluptatem ab.</p>
 	</section>
 
-	<section class="contactoSection">
+	<section class="contactoSection" id="contacto">
 		<h2>Contáctenos!</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae dolores nisi deserunt voluptatibus? Perferendis sit facilis natus officia, ipsum nisi accusantium possimus ad porro rerum modi eius! Nihil, recusandae inventore? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi iusto obcaecati dolorem nesciunt magnam ab, alias vitae, assumenda harum at asperiores fuga nihil eaque, voluptatem, mollitia temporibus. Atque, dicta, consequatur.</p>		
 	</section>
