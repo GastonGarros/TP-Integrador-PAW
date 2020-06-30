@@ -9,6 +9,10 @@
 	font-family: var(--byteFont);
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	background-color: var(--byteBlueL);	
 	margin: 0;
@@ -309,11 +313,13 @@ header h1 {
 	max-height: 40vw;
 	border-radius: .5em;
 	border: 3px solid var(--byteBlueD);
+
 }
 
 .sliderContainer figure[style="display: block"] img {
 	max-width: 40vw;
 	max-height: 40vw;
+	cursor: pointer;	
 }
 
 .slideDesc {
@@ -345,6 +351,10 @@ header h1 {
 	border-top-left-radius: .5em;
 	/*max-width: 100%;
 	transform: translateX(0);*/
+}
+
+.divIdImg {
+	display: none;
 }
 
 /*.anim {
@@ -395,6 +405,36 @@ header h1 {
 	padding: .8em;
 }
 
+.addToCart {
+	float: right;
+	margin-right: 15vw;
+	color: var(--byteBlueL);
+	background-color: rgb(31, 166, 45);
+	border: 2px solid var(--byteBlueD);
+	border-radius: .8em;
+	padding: 1em 2em;
+	transition: .2s;
+}
+
+.addToCart:hover {
+	cursor: pointer;
+	padding: 1.4em 2.4em;
+	transition: .2s;
+	font-weight: bold;
+	background-color: rgb(12, 102, 22);
+}
+
+.addToCart::before {
+	font-family: FontAwesome;
+	content: "\f07a";
+	display: block;
+	font-size: 3em;
+}
+
+.ventasSection .sliderContainer form {
+	display: none;
+}
+
 /* ------------------------------ */
 /* ---- Sección reparaciones ---- */
 /* ------------------------------ */
@@ -418,7 +458,7 @@ header h1 {
 	right: 0;
 	transform: translateX(-50%);
 	position: absolute;
-	z-index: -1;
+	z-index: -50;
 	margin-top: 1em;
 }
 
@@ -472,7 +512,7 @@ header h1 {
 	right: 0;
 	transform: translateX(-50%);
 	position: absolute;
-	z-index: -1;
+	z-index: -50;
 	margin-top: 1em;
 }
 
@@ -499,8 +539,15 @@ header h1 {
     background-color: var(--byteBlue);
     color: var(--byteBlueL);
     cursor: pointer;
-    padding: .6em .9em;
+    padding: .3em .5em;
     font-size: 1.2em;
+}
+
+.goToTop::before {
+	font-family: FontAwesome;
+	content: "\f062";
+	display: block;
+	font-size: 1.5em;
 }
 
 .goToTop:hover {
