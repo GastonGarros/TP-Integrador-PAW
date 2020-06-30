@@ -7,17 +7,43 @@ use App\Model\Session;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
+use Psr\Container\ContainerInterface;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
-
+use Slim\Views\PhpRenderer;
 return function (App $app) {
+
+
+    
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
         // CORS Pre-Flight OPTIONS Request Handler
         return $response;
     });
 
     $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
+        $phpView = new PhpRenderer("../app/views");
+        //$response->getBody()->write('<h1>Hello world!</h1>');
+        $response = $phpView->render($response, "index.html");
         return $response;
+
+    });
+    $app->get('/mercadopago', function (Request $request, Response $response) {
+        $phpView = new PhpRenderer("../app/views");
+       //crear un controlador y construir logica
+        $preference = new MercadoPago\Preference();
+
+        // Crea un ítem en la preferencia
+        $item = new MercadoPago\Item();
+        $item->title = 'Mi producto';
+        $item->quantity = 1; //$response->getBody()->write('<h1>Hello world!</h1>');
+        $item->unit_price = 75.56;
+        $preference->items = array($item);
+        $preference->save();
+        $arg=[
+            "id"=>$preference->id
+        ];
+        $response = $phpView->render($response, "view.php",$arg);
+        return $response;
+
     });
 
     $app->group('/users', function (Group $group) {
@@ -50,7 +76,9 @@ return function (App $app) {
     $app->get('/productos/busqueda/{id}', 'ProductoController:busqueda');
     $app->get('/productos/{id}', 'ProductoController:read');
     $app->post('/productos', 'ProductoController:store');
-    $app->delete('/productos/{id}', 'ProductoController:delete'); 
+    $app->delete('/productos/{id}', 'ProductoController:delete');
+    
+    $app->post('/mp', 'ProductoController:mp');
     
      //Metodos sobre Stock
      $app->get('/stock', 'StockController:index');

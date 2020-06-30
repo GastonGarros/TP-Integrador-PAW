@@ -18,6 +18,9 @@ $containerBuilder = new ContainerBuilder();
 if (false) { // Should be set to true in production
 	$containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
 }
+// Agrega credenciales
+MercadoPago\SDK::setAccessToken('TEST-3500321344255765-062901-91cf20aac32a44530f4ab491004ed752-594265561');
+
 
 // Set up settings
 $settings = require __DIR__ . '/../app/settings.php';
@@ -39,12 +42,14 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 $callableResolver = $app->getCallableResolver();
 
+
 // Register middleware
 $middleware = require __DIR__ . '/../app/middleware.php';
 $middleware($app);
 
 // Register routes
 $routes = require __DIR__ . '/../app/routes.php';
+
 $routes($app);
 
 /** @var bool $displayErrorDetails */
@@ -76,4 +81,16 @@ $response = $app->handle($request);
 $responseEmitter = new ResponseEmitter();
 $responseEmitter->emit($response);
 
+/*
+$preference = new MercadoPago\Preference();
 
+// Crea un ítem en la preferencia
+$item = new MercadoPago\Item();
+$item->title = 'Mi producto';
+$item->quantity = 1;
+$item->unit_price = 75.56;
+$preference->items = array($item);
+$preference->save();
+
+	include __DIR__ . '/../app/views/view.php';
+*/

@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
 use App\Model\Cliente ;
+use Slim\Views\PhpRenderer;
+
 
 
 class ClienteController{
@@ -102,5 +104,10 @@ class ClienteController{
         $response->getBody()->write(\json_encode($rep));
         return $response->withHeader('Content-Type', 'application/json');  
     }
-    
+  /*  public function i ($request, $response,$args){
+        $phpView = new PhpRenderer("../app/views");
+        //$response->getBody()->write('<h1>Hello world!</h1>');
+        $response = $phpView->render($response, "index.html", $args);
+    return $response;
+    }*/
 }

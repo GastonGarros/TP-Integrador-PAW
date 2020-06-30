@@ -90,7 +90,13 @@ public function deletePersona($valor){
    //$valor es el valoor del id que voy a eliminar
   //valido que el numero de documento sea correcto
    if($this->validations->ValDoc($valor)){
-      return parent::delete($this->table,$this->primaryKey,$valor);
+      
+      $col = ["estado"=>"0",
+         "idProductos"=>$valor   
+      ];
+      return parent::update($this->table,$col,$this->primaryKey);
+
+      //return parent::delete($this->table,$this->primaryKey,$valor);
    }else{
       return $this->validations->getMensaje();
    }

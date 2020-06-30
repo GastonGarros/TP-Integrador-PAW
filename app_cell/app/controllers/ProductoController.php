@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
 use App\Model\Producto ;
-
+use App\Model\MercadoPago;
 class ProductoController{
     public function __construct(ContainerInterface $container, Producto $model)
     {
@@ -46,5 +46,12 @@ class ProductoController{
         $response->getBody()->write(\json_encode($rep));
         return $response->withHeader('Content-Type', 'application/json');  
     }
+    public function mp ($request, $response,$args){
+     //require 'app/models/MercadoPAgo.php';
+     $params = $request->getParsedBody();
+      $response->getBody()->write(\json_encode($params));
+        return $response->withHeader('Content-Type', 'application/json');  
 
+
+    }
 }   

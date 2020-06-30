@@ -33,14 +33,6 @@ para una breve descripcion del producto
       $this->table
       
   );
-  $table=$this->table;
-  $sql = sprintf(
-   'select * from %s  where %s= %s',
-   $table,
-   implode('=, ', array_keys($parameters)),
-   $filtro,
-   $parameters[$filtro]
-);
 
     $sentencia = $this->db->prepare($sql);
    $sentencia->execute();
@@ -83,6 +75,7 @@ public function find($id){
 
 public function deleteProducto($valor){
    //$valor es el valoor del id que voy a eliminar
+   //creo un array para editar esos valores pasados como parametro al update
    $col = ["estado"=>"0",
          "idProductos"=>$valor   
       ];
