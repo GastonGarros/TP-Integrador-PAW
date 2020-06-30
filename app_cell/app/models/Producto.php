@@ -46,8 +46,8 @@ para una breve descripcion del producto
   foreach($producto as $key => $val) {
    //print "$key = $val <br>";
    if($val['imagen']!=""){
-      //agregao en el campo imagen la foto en base64 segun la ruta de la imagen
-      $val['imagen']=base64_encode(file_get_contents("../".$val['imagen']));
+      //agregao en el campo imagen la ruta de la imagen
+      $val['imagen']=("view".$val['imagen']);
          
    }
    $p[$key]=$val;
@@ -63,8 +63,8 @@ public function find($id){
  
   //agrego la foto al elemento
     if($producto['imagen']!=""){
-       //agregao en el campo imagen la foto en base64 segun la ruta de la imagen
-       $producto['imagen']=base64_encode(file_get_contents("../".$producto['imagen']));
+       //agregao en el campo imagen la ruta de la imagen
+       $producto['imagen']=("view".$val['imagen']);
        
    }
 
@@ -94,9 +94,14 @@ public function insertProducto( $parameters){
         $this->log->info('Consulta el id '.$variable.' de '.$table);
         return $sentencia->fetch();
 
-        return parent::findId($this->primaryKey,'6',$this->table);
+        //return parent::findId($this->primaryKey,'6',$this->table);
     
 
+}
+
+public function productoItem($arg){
+
+   return $arg;
 }
 
 public function busquedap($arg){

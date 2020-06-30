@@ -27,7 +27,7 @@ class ProductoController{
     } 
 
      public function read($request, $response, $args){
-        $producto = $this->model->find($args['id']);
+        $producto = $this->model->productoItem($args['id']);
         $response->getBody()->write(\json_encode($producto));
         return $response->withHeader('Content-Type', 'application/json');
 
