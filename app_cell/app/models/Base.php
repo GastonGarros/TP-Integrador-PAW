@@ -30,7 +30,7 @@ class Base  {
         $sentencia = $this->db->prepare("SELECT * FROM .$table");    
         $sentencia->execute();    
 
-       // $this->log->info('listo el contenido de '.$table);
+        $this->log->info('listo el contenido de '.$table);
         
         return $sentencia->fetchAll();        
     }

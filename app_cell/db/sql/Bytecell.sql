@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `bytecell` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `bytecell`;
 -- MySQL dump 10.13  Distrib 5.7.30, for Linux (x86_64)
 --
 -- Host: localhost    Database: bytecell
@@ -34,16 +32,6 @@ CREATE TABLE `Categoria` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Categoria`
---
-
-LOCK TABLES `Categoria` WRITE;
-/*!40000 ALTER TABLE `Categoria` DISABLE KEYS */;
-INSERT INTO `Categoria` VALUES (1,'pines',0),(2,'cargadores',0);
-/*!40000 ALTER TABLE `Categoria` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Detalle`
 --
 
@@ -61,16 +49,6 @@ CREATE TABLE `Detalle` (
   CONSTRAINT `fk_Detalle_Venta1` FOREIGN KEY (`IdVenta`) REFERENCES `Venta` (`IdVenta`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Detalle`
---
-
-LOCK TABLES `Detalle` WRITE;
-/*!40000 ALTER TABLE `Detalle` DISABLE KEYS */;
-INSERT INTO `Detalle` VALUES (1,1,60,1);
-/*!40000 ALTER TABLE `Detalle` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `Persona`
@@ -93,7 +71,6 @@ CREATE TABLE `Persona` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
 --
 -- Table structure for table `Producto`
 --
@@ -107,17 +84,13 @@ CREATE TABLE `Producto` (
   `descripcion` varchar(45) DEFAULT NULL,
   `PrecioLista` decimal(10,0) NOT NULL,
   `PrecioVenta` decimal(10,0) NOT NULL,
-  `estado` varchar(45) DEFAULT NULL,
-  `tipo_publico` varchar(45) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT '1',
+  `tipo_publico` varchar(45) DEFAULT 'publico',
   `imagen` varchar(100) DEFAULT NULL,
+  `visitas` int(11) DEFAULT '0',
   PRIMARY KEY (`idProductos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Producto`
---
-
 
 --
 -- Table structure for table `Producto_has_Categoria`
@@ -138,16 +111,6 @@ CREATE TABLE `Producto_has_Categoria` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Producto_has_Categoria`
---
-
-LOCK TABLES `Producto_has_Categoria` WRITE;
-/*!40000 ALTER TABLE `Producto_has_Categoria` DISABLE KEYS */;
-INSERT INTO `Producto_has_Categoria` VALUES (1,1),(2,2);
-/*!40000 ALTER TABLE `Producto_has_Categoria` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Stock`
 --
 
@@ -161,16 +124,6 @@ CREATE TABLE `Stock` (
   CONSTRAINT `fk_Stock_Producto1` FOREIGN KEY (`Producto_idProducto`) REFERENCES `Producto` (`idProductos`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Stock`
---
-
-LOCK TABLES `Stock` WRITE;
-/*!40000 ALTER TABLE `Stock` DISABLE KEYS */;
-INSERT INTO `Stock` VALUES (1,5),(2,5);
-/*!40000 ALTER TABLE `Stock` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `Venta`
@@ -190,7 +143,6 @@ CREATE TABLE `Venta` (
   CONSTRAINT `fk_Venta_user1` FOREIGN KEY (`user_IdUser`) REFERENCES `user` (`nro_doc`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `user`
@@ -212,9 +164,6 @@ CREATE TABLE `user` (
   CONSTRAINT `fk_user_Persona1` FOREIGN KEY (`nro_doc`) REFERENCES `Persona` (`nro_doc`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
-
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -225,4 +174,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 17:41:00
+-- Dump completed on 2020-07-01  1:56:45

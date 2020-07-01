@@ -29,7 +29,7 @@ class ProductoController{
      public function read($request, $response, $args){
         $producto = $this->model->productoItem($args['id']);
         $response->getBody()->write(\json_encode($producto));
-        return $response->withHeader('Content-Type', 'application/json');
+     return $response->withHeader('Content-Type', 'application/json');
 
        
     }
@@ -42,7 +42,7 @@ class ProductoController{
     }
     public function busqueda ($request, $response,$args){
      
-        $rep = $this->model->busquedap($args['id']);
+        $rep = $this->model->busquedap($args);
         $response->getBody()->write(\json_encode($rep));
         return $response->withHeader('Content-Type', 'application/json');  
     }

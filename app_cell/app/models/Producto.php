@@ -25,20 +25,16 @@ class Producto  extends Base {
 public function findAll(){
 /*
 creo la sentencia sql para pasar algunos parametros de finidos de columns, esto sirve 
-para una breve descripcion del producto
+para una breve descripcion del producto ordenados por mas visitados y con un limite de 10 producto
 */
    $sql = sprintf(
-      'select %s from %s ',
+      'select %s from %s WHERE estado =1 ORDER BY visitas ASC LIMIT 0,10',
       implode(', ',array_values($this->columns)),
       $this->table
       
   );
-
-    $sentencia = $this->db->prepare($sql);
+   $sentencia = $this->db->prepare($sql);
    $sentencia->execute();
-   
-  
-  
    $producto = $sentencia->fetchAll();
 
 //agrego la imagen al resultado de la consulta
@@ -79,6 +75,7 @@ public function deleteProducto($valor){
    $col = ["estado"=>"0",
          "idProductos"=>$valor   
       ];
+      $this->log->info("DELETE logico del producto $valor");
    return parent::update($this->table,$col,$this->primaryKey);
    
 
@@ -89,7 +86,7 @@ public function insertProducto( $parameters){
    
         //falta descriminar si el producto ya esta cargado pero con estado 0
 
-        $sentencia = $this->db->prepare("SELECT * FROM Productos WHERE $variable = :valor");
+        $sentencia = $this->db->prepare("SELECT * FROM Productos WHERE $parameters = :valor");
         $sentencia->execute(compact('valor'));
         $this->log->info('Consulta el id '.$variable.' de '.$table);
         return $sentencia->fetch();
@@ -98,33 +95,49 @@ public function insertProducto( $parameters){
     
 
 }
-
-public function productoItem($arg){
-
-   return $arg;
+//valor es el filtro del where
+public function productoItem($valor){
+   $stmt = $this->db->prepare("SELECT idProductos, nombre, PrecioVenta, tipo_publico, imagen, Cantidad FROM Producto 
+   INNER JOIN Stock on Producto.idProductos = Stock.Producto_idProducto
+   where idProductos= :valor and estado=1 ");
+   
+   $stmt->execute(compact('valor'));
+   $arr = $stmt->fetchAll();
+   if($arr){
+      $stmt2 = $this->db->prepare("UPDATE Producto SET visitas = visitas +1 where idProductos= :valor");
+      $stmt2->execute(compact('valor'));
+      $this->log->info("UPDATE de visitas en el producto $valor ");
+   }else{
+      return false;
+   }
+   $this->log->info("SELECT del producto $valor ");
+   return  $arr;
 }
 
 public function busquedap($arg){
-   $search = "%$arg%";
-   $stmt = $this->db->prepare("SELECT * FROM Producto WHERE nombre LIKE ?");
+   if(array_key_exists('pag',$arg)){// si existe la pagina me muevo a la pagina elegida 
+      $pmax = $arg*10;
+      $pmin=$pmax-10;
+   }else{//muestro los primero articulos
+      $pmax = 10;
+      $pmin=0;
+   }
+   $search = "%$arg[search]%";
+   $stmt = $this->db->prepare("SELECT * FROM Producto WHERE nombre LIKE ? and estado=1 LIMIT $pmin,$pmax");
+  
    $stmt->execute([$search]);
+   
    $arr = $stmt->fetchAll();
    if(!$arr){
+      $this->log->info("BUSQUEDA del los producto que contienen $search no exitosa ");
       return false;
    } //exit('No rows');
-   
+   //agrego la cantidad de resultados
+  $count = strval($stmt->rowcount());
+   $arr[] =['resultados'=>$count];
+   $this->log->info("BUSQUEDA del los producto que contienen $search con $count elementos");
 return $arr;
 
-/*
-$inArr = [1, 3, 5];
-$clause = implode(',', array_fill(0, count($inArr), '?')); //create 3 question marks
-$stmt = $pdo->prepare("SELECT * FROM myTable WHERE id IN ($clause)");
-$stmt->execute($inArr);
-$resArr = $stmt->fetchAll();
-if(!$resArr) exit('No rows');
-var_export($resArr);
-$stmt = null;
-*/
 }
 
 }

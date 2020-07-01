@@ -70,10 +70,10 @@ return function (App $app) {
     $app->delete('/personas/{id}', 'ClienteController:deletePersona');  
      //Metodos sobre user
     // $app->get('/user', 'BaseController:index');
-  
+   // '/news[/{year}[/{month}]]'
    //Metodos sobre Productos
     $app->get('/productos', 'ProductoController:index');
-    $app->get('/productos/busqueda/{id}', 'ProductoController:busqueda');
+    $app->get('/productos/busqueda/{search}[/{pag}]', 'ProductoController:busqueda');
     $app->get('/productos/{id}', 'ProductoController:read');
     $app->post('/productos', 'ProductoController:store');
     $app->delete('/productos/{id}', 'ProductoController:delete');
