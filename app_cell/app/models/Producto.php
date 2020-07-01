@@ -43,7 +43,7 @@ para una breve descripcion del producto ordenados por mas visitados y con un lim
    //print "$key = $val <br>";
    if($val['imagen']!=""){
       //agregao en el campo imagen la ruta de la imagen
-      $val['imagen']=("view".$val['imagen']);
+      $val['imagen']=("view/".$val['imagen']);
          
    }
    $p[$key]=$val;
@@ -60,7 +60,7 @@ public function find($id){
   //agrego la foto al elemento
     if($producto['imagen']!=""){
        //agregao en el campo imagen la ruta de la imagen
-       $producto['imagen']=("view".$val['imagen']);
+       $producto['imagen']=("view/".$val['imagen']);
        
    }
 
