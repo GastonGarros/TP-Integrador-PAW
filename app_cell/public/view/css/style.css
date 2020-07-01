@@ -193,7 +193,7 @@ header h1 {
 	color: var(--byteBlueD);
 	text-align: center;
 	font-size: 15px;
-	padding: 5px;
+	padding: 5px 30px;
 	width: 7vw;
 	transition: all 1s;
 	cursor: pointer;
@@ -231,35 +231,8 @@ header h1 {
 }
 
 .navContainerMini .navLogin {
-	padding: 2px;
-	margin-top: 0.1em;
-	position: absolute;
-	right: 0.5em;
-	text-align: center;
-	border: none;
-	border-radius: 0;
+	display: none;
 }
-
-.navContainerMini .navLogin input[type="submit"] {
-	background-color: var(--byteBlueL);
-	color: var(--byteBlueD);
-	border: 2px solid rgb(36, 39, 41);
-	padding: 2px 10px;
-	border-radius: 5px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.navContainerMini .navLogin input[type="submit"]:hover {
-	background-color: var(--byteBlueD);
-	color: var(--byteBlueL);
-}
-
-.navContainerMini .navLogin a {
-	text-decoration: none;
-	font-size: 0;
-}
-
 
 /* ---------------------------------- */
 /* ---- Sección/Slider de ventas ---- */
@@ -376,17 +349,11 @@ header h1 {
 }*/
 
 .botonSliderIzq{
-	position: absolute;
-    top: 50%;
     left: 0%;
-    transform: translate(0%,-50%);
 }
 
 .botonSliderDer{
-	position: absolute;
-    top: 50%;
     right: 0%;
-    transform: translate(0%,-50%);
 }
 
 .botonSliderIzq, .botonSliderDer {
@@ -397,6 +364,9 @@ header h1 {
 	padding: .5em;
 	transition: .2s;
 	cursor: pointer;
+	position: absolute;
+    top: 50%;
+    transform: translate(0%,-50%);
 }
 
 .botonSliderIzq:hover, .botonSliderDer:hover {
@@ -567,3 +537,224 @@ header h1 {
 	75%  {transform: translateY(-20%);}
   	100% {transform: translateY(0%);}
 }
+
+
+
+/* --------------------- */
+/* ---- mediaQuerys ---- */
+/* --------------------- */
+
+
+@media only screen and (max-width: 900px) {
+	.navContainer {
+		display: flex;
+		justify-content: space-between;
+		top: 0;
+		padding: .5em 0;
+	}
+
+	.navContainer .navBar li a {
+		font-size: 16px;
+		padding: 10px 25px; 
+		width: 12vw;
+		margin: 3px;
+	}
+
+	.navContainer .navBar li a span {
+		cursor: pointer;
+		display: inline-block;
+		position: relative;
+		transition: 0;	
+	}
+
+	.navContainer .navBar li a span::after {
+		content: '';
+		position: static;
+		opacity: 1;
+		top: 0;
+		right: 0;
+		transition: 0;
+	}
+
+	.navContainer .navBar li a:hover span {
+	  	padding-right: 0;
+	}
+
+	.navContainer .navBar li a:hover span::after {
+		opacity: 1;
+		right: 0;
+	}
+
+	.navContainer .navBar li a:hover {
+		background-color: var(--byteBlueD);
+		color: var(--byteBlueL);
+	}
+
+
+	.navContainer .navLogin {
+		padding: 2px;
+		margin-top: 0.1em;
+		position: absolute;
+		right: 0.5em;
+		text-align: center;
+	}
+
+	.navContainer .navLogin input[type="text"],  .navContainer .navLogin input[type="password"]{
+		width: 15vw;
+	}
+
+	.navContainer .navLogin a {
+		text-decoration: none;
+		font-size: 1;
+	}
+
+	.navContainerMini .navBar li a {
+		font-size: 16px;
+		padding: 10px 25px; 
+		width: 12vw;
+		margin: 3px;
+	}
+
+	.addToCart {
+		margin-right: 10vw;
+		padding: .5em 1em;
+	}
+
+	.addToCart:hover {
+		padding: .7em 1.2em;
+	}
+
+	.reparSection p {
+		font-size: 1.2em;
+	}
+
+	.reparSection button {
+		padding: .5em;
+		font-size: 1.2em;
+	}
+
+	.contactoSection p {
+		font-size: 1.2em;
+	}
+
+	footer {
+		padding-bottom: 6em;
+	}
+
+	body footer p {
+		font-size: 1em;
+	}
+}
+
+
+@media only screen and (max-width: 750px) {
+	.contactInfoHeader {
+		display: none;
+	}
+
+	header h1 {
+		padding-right: 10vw;
+	}
+	
+	.navContainer .navBar li a {
+		font-size: 14px;
+		padding: 10px 15px; 
+		width: 12vw;
+		margin: 3px;
+	}
+
+	.slideDesc {
+		font-size: .8em;
+	}
+
+	.mySlideLeft {
+		left: 2em;
+	}
+
+	.mySlideRight {
+		right: 2em;
+	}
+
+	.addToCart {
+		transform: translateY(-50%);
+		border-radius: .4em;
+	}
+}
+
+@media only screen and (max-width: 560px) {
+	header a img {
+		width: 40vw;
+	}
+
+	header h1 {
+		padding-right: 0;
+		font-size: 1.5em;
+	}
+
+	.ventasSection h2, .reparSection h2, .contactoSection h2 {
+		font-size: 1.8em;
+	}
+
+	.navContainer .navBar {
+		display: inline-block;
+	}
+
+	.navContainer .navBar li a {
+		width: 25vw;
+		padding: 5px 10px;
+	}
+
+	.navContainer .navLogin {
+		width: 60vw;
+	}
+
+	.navContainerMini .navBar li a {
+		font-size: 10px;
+	}
+
+	.navContainer .navLogin input[type="text"],  .navContainer .navLogin input[type="password"]{
+		width: 20vw;
+	}
+
+	.mySlide {
+		width: 100vw;
+		margin-top: ;
+	}
+
+	.sliderContainer figure img {
+		min-width: 10vw;
+		min-height: 10vw;
+		max-width: 75vw;
+		max-height: 75vw;
+	}
+
+	.mySlideLeft, .mySlideRight {
+		display: none;
+	}
+
+	.botonSliderIzq, .botonSliderDer {
+		font-size: 1.5em;
+		padding: .3em;
+	}
+
+	.botonSliderIzq:hover, .botonSliderDer:hover {
+		padding: .5em;
+	}
+
+	.addToCart {
+		padding: .2em .6em;
+		margin: 1em 0;
+		float: none;
+		transform: translateX();
+	}
+
+	.addToCart:hover {
+		padding: .4em .8em;
+	}
+
+	footer {
+		padding-bottom: 3em;
+	}
+
+}
+
