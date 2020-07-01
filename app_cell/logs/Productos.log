@@ -51,3 +51,7 @@
 [2020-07-01T01:41:16.287079-03:00] App_bytecell.INFO: UPDATE de visitas en el producto 2  [] []
 [2020-07-01T01:41:16.291267-03:00] App_bytecell.INFO: SELECT del producto 2  [] []
 [2020-07-01T02:10:07.234303-03:00] App_bytecell.INFO: listo todos los productos con descripcion de Producto [] []
+[2020-07-01T21:33:09.584960+00:00] App_bytecell.INFO: listo todos los productos con descripcion de Producto [] []
+[2020-07-01T21:33:29.774414+00:00] App_bytecell.INFO: BUSQUEDA del los producto que contienen %cargador% con 1 elementos [] []
+[2020-07-01T21:34:08.231445+00:00] App_bytecell.INFO: BUSQUEDA del los producto que contienen %cargador% con 1 elementos [] []
+[2020-07-01T21:38:25.942382+00:00] App_bytecell.INFO: BUSQUEDA del los producto que contienen %cargador% con 1 elementos [] []
