@@ -1,24 +1,30 @@
 <?php
-declare(strict_types=1);
+
 
 namespace App\Model;
-use Slim\Psr7\Factory\ResponseFactory;;
-use Psr\Http\Message\ResponseInterface as Response;
 
-class Session extends Action
+
+class Session 
 {
     public function __construct()
     {
+        //creo la sesion   
+        session_start();
     }
-    protected function action(): Response
-    {
-        //$users = $this->userRepository->findAll();
-        $users['id'] ="asdas";
-     //   $this->logger->info("Users list was viewed.");
-        $responseFactory = new ResponseFactory();
-        $response = $responseFactory->createResponse();
-        $response->getBody()->write(\json_encode($users));
-return $response;
-       // return $this->respondWithData($users);
+//setea los valores de la session 
+    public function setSession($name,$value){
+
+        $_SESSION[$name]=$value;
     }
+//get de los valores de la session
+    public function getSession($name,$value){
+
+        $_SESSION[$name]=$value;
+    }
+//finaliza la session
+    public function closeSession(){
+        session_unset();
+        session_destroy();
+    }
+
 }

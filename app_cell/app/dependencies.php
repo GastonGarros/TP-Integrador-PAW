@@ -39,9 +39,13 @@ return function (ContainerBuilder $containerBuilder) {
             return $pdo;
         },
       
-        'ClienteController' => function(ContainerInterface $c){
-            $model = new \App\Model\Cliente($c->get('db'));
-            return new \App\Controller\ClienteController($c, $model);
+        'PersonaController' => function(ContainerInterface $c){
+            $model = new \App\Model\Persona($c->get('db'));
+            return new \App\Controller\PersonaController($c, $model);
+        },
+        'UserController' => function(ContainerInterface $c){
+            $model = new \App\Model\User($c->get('db'));
+            return new \App\Controller\UserController($c, $model);
         },
         'VentaController' => function(ContainerInterface $c){
             $model = new \App\Model\Venta($c->get('db'));

@@ -2,13 +2,13 @@
 namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
-use App\Model\Cliente ;
+use App\Model\Persona ;
 use Slim\Views\PhpRenderer;
 
 
 
-class ClienteController{
-    public function __construct(ContainerInterface $container, Cliente $model)
+class PersonaController{
+    public function __construct(ContainerInterface $container, Persona $model)
     {
         $this->container = $container;
         $this->model = $model;

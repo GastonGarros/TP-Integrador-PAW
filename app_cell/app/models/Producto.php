@@ -6,6 +6,7 @@ class Producto  extends Base {
 
    private $table = "Producto";
    private $primaryKey = "idProductos";
+   //se usa para filtrar el contenido de las consultas
    private $columns = [
       "id" =>"idProductos",
       "name"=>"nombre",
@@ -123,17 +124,20 @@ public function busquedap($arg){
       $pmin=0;
    }
    $search = "%$arg[search]%";
-   $stmt = $this->db->prepare("SELECT * FROM Producto WHERE nombre LIKE ? and estado=1 LIMIT $pmin,$pmax");
-  
+   $stmt = $this->db->prepare("SELECT * FROM Producto WHERE nombre LIKE ? and estado=1 ");
+  //busca para contar cantidad total
    $stmt->execute([$search]);
-   
+   $count = strval($stmt->rowcount());
+ //limita la busqueda--- mejorar de alguna forma esta consulta con la anterior
+   $stmt= $this->db->prepare("SELECT * FROM Producto WHERE nombre LIKE ? and estado=1 LIMIT $pmin,$pmax");
+   $stmt->execute([$search]);
    $arr = $stmt->fetchAll();
    if(!$arr){
       $this->log->info("BUSQUEDA del los producto que contienen $search no exitosa ");
       return false;
    } //exit('No rows');
    //agrego la cantidad de resultados
-  $count = strval($stmt->rowcount());
+  
    $arr[] =['resultados'=>$count];
    $this->log->info("BUSQUEDA del los producto que contienen $search con $count elementos");
 return $arr;

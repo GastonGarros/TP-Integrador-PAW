@@ -54,20 +54,20 @@ return function (App $app) {
   
     
     //metodos sobre usuarios
-    $app->get('/user', 'ClienteController:index');
-    $app->get('/user/{id}', 'ClienteController:read');
-    $app->post('/user/register', 'ClienteController:store');
-    $app->put('/user', 'ClienteController:update');
-    $app->post('/loggin', 'ClienteController:loggin');
- //   $app->get('/user/logout', 'ClienteController:logout');
-    $app->delete('/user/{id}', 'ClienteController:deleteUser');  
+    $app->get('/user', 'UserController:index');
+    $app->get('/user/{id}', 'UserController:read');
+    $app->post('/user/register', 'UserController:store');
+    $app->put('/user', 'UserController:update');
+    $app->post('/loggin', 'UserController:loggin');
+ //   $app->get('/user/logout', 'UserController:logout');
+    $app->delete('/user/{id}', 'UserController:deleteUser');  
 
     // datos personales
-    $app->get('/personas', 'ClienteController:indexPersona');
-    $app->get('/personas/{id}', 'ClienteController:readPersona');
-    $app->post('/personas', 'ClienteController:storePersona');
-    $app->put('/personas', 'ClienteController:updatePersona');
-    $app->delete('/personas/{id}', 'ClienteController:deletePersona');  
+    $app->get('/personas', 'PersonaController:indexPersona');
+    $app->get('/personas/{id}', 'PersonaController:readPersona');
+    $app->post('/personas', 'PersonaController:storePersona');
+    $app->put('/personas', 'PersonaController:updatePersona');
+    $app->delete('/personas/{id}', 'PersonaController:deletePersona');  
      //Metodos sobre user
     // $app->get('/user', 'BaseController:index');
    // '/news[/{year}[/{month}]]'

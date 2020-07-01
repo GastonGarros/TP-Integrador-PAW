@@ -2,10 +2,10 @@
 namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
-use App\Model\Perro;
+use App\Model\User;
 
-class BaseController {
-    public function __construct(ContainerInterface $container, Perro $model)
+class UserController {
+    public function __construct(ContainerInterface $container, User $model)
     {
         $this->container = $container;
         $this->model = $model;
