@@ -39,7 +39,7 @@ para una breve descripcion del producto ordenados por mas visitados y con un lim
    $producto = $sentencia->fetchAll();
 
 //agrego la imagen al resultado de la consulta
-  $p=array();
+/*  $p=array();
   foreach($producto as $key => $val) {
    //print "$key = $val <br>";
    if($val['imagen']!=""){
@@ -49,26 +49,12 @@ para una breve descripcion del producto ordenados por mas visitados y con un lim
    }
    $p[$key]=$val;
    
-}
+}*/
 
 $this->log->info('listo todos los productos con descripcion de '.$this->table);
- return $p;
+ return $producto;
 }
 
-public function find($id){
-   $producto = parent::findId($this->primaryKey,$id,$this->table);
- 
-  //agrego la foto al elemento
-    if($producto['imagen']!=""){
-       //agregao en el campo imagen la ruta de la imagen
-       $producto['imagen']=("view/".$val['imagen']);
-       
-   }
-
-   $this->log->info('Muestra el prodcuto'.$this->table." id ".$id );
-
-   return $producto;
-}
 
 public function deleteProducto($valor){
    //$valor es el valoor del id que voy a eliminar
@@ -112,7 +98,27 @@ public function productoItem($valor){
       return false;
    }
    $this->log->info("SELECT del producto $valor ");
+    
+  
    return  $arr;
+}
+
+private function agregarPath($arg){
+
+   foreach ($arg as $key => $value) {
+      
+         if($value['imagen'] !=""){
+           //agrego la foto al elemento
+            
+               //agregao en el campo imagen la ruta de la imagen
+               $value['imagen']=("view/".$value['imagen']);
+               
+           
+         
+         }
+      
+   }
+   return $arg;
 }
 
 public function busquedap($arg){
@@ -131,7 +137,9 @@ public function busquedap($arg){
  //limita la busqueda--- mejorar de alguna forma esta consulta con la anterior
    $stmt= $this->db->prepare("SELECT * FROM Producto WHERE nombre LIKE ? and estado=1 LIMIT $pmin,$pmax");
    $stmt->execute([$search]);
+
    $arr = $stmt->fetchAll();
+   $arr=$this->agregarPath($arr);
    if(!$arr){
       $this->log->info("BUSQUEDA del los producto que contienen $search no exitosa ");
       return false;

@@ -23,7 +23,7 @@ class Base  {
         $sentencia = $this->db->prepare("SELECT * FROM $table WHERE $variable = :valor");
         $sentencia->execute(compact('valor'));
         $this->log->info('Consulta el id '.$variable.' de '.$table);
-        return $sentencia->fetch();
+        return $sentencia->fetchAll();
     }
 
     public function findAlll($table){

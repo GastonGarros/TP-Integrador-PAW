@@ -1,2 +1,4 @@
 
 app_cell/.env
+app_cell/logs/Productos.log
+app_cell/logs/app.log
