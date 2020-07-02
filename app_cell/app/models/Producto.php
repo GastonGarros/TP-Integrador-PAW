@@ -62,11 +62,11 @@ public function insertProducto( $parameters){
    
         //falta descriminar si el producto ya esta cargado pero con estado 0
 
-        $sentencia = $this->db->prepare("SELECT * FROM Productos WHERE $parameters = :valor");
+       /* $sentencia = $this->db->prepare("SELECT * FROM Productos WHERE $parameters = :valor");
         $sentencia->execute(compact('valor'));
-        $this->log->info('Consulta el id '.$variable.' de '.$table);
-        return $sentencia->fetch();
-
+        $this->log->info('Consulta el id '.$variable.' de '.$table);*/
+        return  parent::insert($this->table,$parameters);
+        
         
 
 }
