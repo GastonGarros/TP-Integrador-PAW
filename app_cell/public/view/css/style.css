@@ -93,7 +93,7 @@ header h1 {
 	font-size: 20px;
 	padding: 10px;
 	width: 15vw;
-	transition: all 0.5s;
+	transition: all .2s;
 	cursor: pointer;
 	margin: 5px;
 }
@@ -102,7 +102,7 @@ header h1 {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
-	transition: 0.5s;	
+	transition: .2s;	
 }
 
 .navContainer .navBar li a span::after {
@@ -111,7 +111,7 @@ header h1 {
 	opacity: 0;
 	top: 0;
 	right: -20px;
-	transition: 0.5s;
+	transition: .2s;
 }
 
 .navContainer .navBar li a:hover span {
@@ -195,7 +195,7 @@ header h1 {
 	font-size: 15px;
 	padding: 5px 30px;
 	width: 7vw;
-	transition: all 1s;
+	transition: all .2s;
 	cursor: pointer;
 	margin: 3px;
 }
@@ -249,6 +249,10 @@ header h1 {
 
 .sliderContainer {
 	position: relative;
+}
+
+.mySlideImg {
+	cursor: pointer;
 }
 
 .mySlideLeft, .mySlideRight {
@@ -307,7 +311,7 @@ header h1 {
 	top: 0;
 	padding: .5em;
 	font-size: 1em;
-	transition: .5s;
+	transition: .2s;
 	transform: translateX(10%);
 	border-radius: 2em;
 	/*transform: translate(0%,-50%);*/
@@ -320,7 +324,7 @@ header h1 {
 	overflow-x: hidden;
 	overflow-y: auto;
 	background-color: rgba(50, 115, 168, 1);
-	transition: .3s;
+	transition: .2s;
 	border-top-left-radius: .5em;
 	/*max-width: 100%;
 	transform: translateX(0);*/
@@ -401,8 +405,43 @@ header h1 {
 	font-size: 3em;
 }
 
+/* Oculto hasta que tenga funcionalidad */
 .ventasSection .sliderContainer form {
 	display: none;
+}
+
+.tooltiptextSlider {
+	visibility: hidden;
+	width: 120px;
+	background-color: var(--byteBlue);
+	color: var(--byteBlueL);
+	text-align: center;
+	border: solid 2px var(--byteBlueD);
+	border-radius: 6px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 10;
+	top: 100%;
+	left: 50%;
+	margin-left: -60px;
+	opacity: 0;
+	transition: opacity .2s;
+}
+
+.tooltiptextSlider::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent var(--byteBlueD) transparent;
+}
+
+.mySlide:hover .tooltiptextSlider {
+	visibility: visible;
+	opacity: 1;
 }
 
 /* ------------------------------ */
@@ -457,6 +496,42 @@ header h1 {
 	background-color: var(--byteBlueD);
 	box-shadow: 0 5px #666;
 	transform: translateY(4px);
+}
+
+.formDiag {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+}
+
+.repModelo, .repProblema {
+	width: 40vw;
+	font-size: 1.1em;
+	margin-bottom: 1em;
+	border: 2px solid var(--byteBlueD);
+}
+
+.repSendButton, .repClearButton {
+	width: 20vw;
+	font-size: 1.3em;
+	background-color: var(--byteBlue);
+	color: var(--byteBlueL);
+	cursor: pointer;
+	border: 2px solid var(--byteBlueD);
+	border-radius: .4em;
+	padding: .5em 1em;
+}
+
+.repSendButton {
+	margin-bottom: 1em;
+}
+
+.repSendButton:hover {
+	background-color: var(--byteBlueD);
+}
+
+.repClearButton:hover {
+	background-color: rgb(207, 0, 0);
 }
 
 /* ----------------------------- */
@@ -543,6 +618,22 @@ header h1 {
 /* --------------------- */
 /* ---- mediaQuerys ---- */
 /* --------------------- */
+
+@media only screen and (max-width: 1600px) {
+	.ventasSection {
+		margin-bottom: 20vw;
+	}
+
+	.tooltiptextSlider {
+		top: 125%;
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	.tooltiptextSlider {
+		top: 105%;
+	}
+}
 
 
 @media only screen and (max-width: 900px) {
@@ -663,6 +754,16 @@ header h1 {
 		margin: 3px;
 	}
 
+	.repModelo, .repProblema {
+		font-size: 1em;
+	}
+
+	.repSendButton, .repClearButton {
+		width: 30vw;
+		font-size: 1em;
+		padding: .2em .7em;
+	}
+
 	.slideDesc {
 		font-size: .8em;
 	}
@@ -673,6 +774,10 @@ header h1 {
 
 	.mySlideRight {
 		right: 2em;
+	}
+
+	.tooltiptextSlider {
+		font-size: .8em;
 	}
 
 	.addToCart {
@@ -752,9 +857,18 @@ header h1 {
 		padding: .4em .8em;
 	}
 
+	.mySlide:hover .tooltiptextSlider {
+		visibility: hidden;
+	}
+
+	.repSendButton, .repClearButton {
+		width: 30vw;
+		font-size: 1em;
+		padding: .2em .7em;
+	}
+
 	footer {
 		padding-bottom: 3em;
 	}
 
 }
-

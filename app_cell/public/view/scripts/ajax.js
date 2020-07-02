@@ -1,4 +1,4 @@
-// variable con una función que genera una conexión AJAX genéricamente
+// Variable con una función que genera una conexión AJAX genéricamente
 // Recibe la URL a la cual debe conectarse y la función que debe ejecutar con la respuesta que reciba del server
 var AJAX = function (URL, funcionDeCallback) {
 	var _URL = URL || {},
@@ -12,19 +12,19 @@ var AJAX = function (URL, funcionDeCallback) {
 	    xmlhttp.onreadystatechange = function() {
 	    	if (this.readyState == 4 && this.status == 200) {
 	    		var resultado = JSON.parse(this.responseText);
-	        	_funcion(resultado); // Arma los sliders con la respuesta del server
-	      	}
+	        	_funcion(resultado); 
+	      	} else
 
 	      	if (this.readyState == 4 && this.status == 404) {
+	      		console.error("Página no encontrada - Respuesta del servidor: ");
 	        	console.error(this.responseText);
-	        	_funcion({ // Arma un slider de error?
-	          		id: "id?",
-	          		src: "/",
-	          		desc: "desc?",
-	        	});
+	        	//_funcion(resultado);
+	      	} else { 
+	      		/*console.error("Error desconocido - Respuesta del servidor: ");
+	      		console.error(this.responseText);*/
 	      	}
 	    };
-	    xmlhttp.open("POST", "view/test/" + _URL + ".js"); //URL forzada para testing
+	    xmlhttp.open("GET",  _URL);
 	    xmlhttp.send();
 	}
 };
@@ -44,27 +44,53 @@ function nuevoElemento(tag, atributos, contenido) {
     return elemento;
 }
 
-// Función para crear elementos del slider usando la función "nuevoElemento" e irlos insertando en el slider
+//Función que recibe las imágenes del slider pidiéndoselas al servidor mediante AJAX, y luego crea los elementos HTML correspondientes y los inserta al DOM
+function sliderFirstLoad() {
+	var a = new AJAX("/productos", function(response) {
+		var _response = response || {};
+    	for (var i in _response) {
+    		//aca voy creando cada imagen del slider. osea el figure con su img, figcaption y div
+			var figure = nuevoElemento("figure", {class: "mySlide", style: "display: none;"}, ""),
+				img = nuevoElemento("img", {class: "mySlideImg", src: _response[i].imagen, alt: "Imagen del producto.", onclick: "sliderOnClick("+_response[i].idProductos+")"}, ""),
+				figcaption = nuevoElemento("figcaption", {class:"slideDesc"}, "Nombre del producto: " + _response[i].nombre);
+				div = nuevoElemento("div", {class: "divIdImg"}, _response[i].idProductos),
+				span = nuevoElemento("span", {class: "tooltiptextSlider"}, "Click para ver más datos de: " + _response[i].nombre);
+			figure.appendChild(img);
+			figure.appendChild(figcaption);
+			figure.appendChild(div);
+			figure.appendChild(span);
+			document.getElementById("sliderContainer").prepend(figure);
+    	}
+    });
+}
+
+//Función que pide mediante AJAX datos adicionales al servidor sobre el producto seleccionado
+function sliderOnClick(id) {
+	var _id = id || {},
+		e = e || window.event,
+		target = e.target || e.srcElement,
+		a = new AJAX("/productos/" + id, function(response){
+			var _response = response || {},
+				slides = document.getElementsByClassName("slideDesc");
+				console.log(_response);
+			if (_response[0] != null) {
+				slides[slideIndex-1].innerHTML += " - " + "Precio: $"+ _response[0].PrecioVenta + " - " + "Stock: " + _response[0].Cantidad;
+			} else {
+				slides[slideIndex-1].innerHTML += " - " + "No hay información adicional.";
+			}
+		});
+}
+
+sliderFirstLoad(); //El slider se carga
+
+
+
+/*
 var sliderLoader = function(response) {
-	var _response = response || {};
-
-	function sliderFirstLoad() {
-		//aca voy creando cada imagen del slider. osea el figure con su img, figcaption y div
-		var figure = nuevoElemento("figure", {class: "mySlide", style: "display: none;"}, ""),
-			img = nuevoElemento("img", {class: "mySlideImg", src: _response.src, alt: "Imagen del producto."}, ""),
-			figcaption = nuevoElemento("figcaption", {class:"slideDesc"}, _response.desc);
-			div = nuevoElemento("div", {class: "divIdImg"}, _response.id);
-		figure.appendChild(img);
-		figure.appendChild(figcaption);
-		figure.appendChild(div);
-		document.getElementById("sliderContainer").prepend(figure);
-	}
-
-	function sliderLoadImg() {
-
+	
 	}
 
 	return {
 		sliderFirstLoad : sliderFirstLoad
 	}
-}
+}*/
