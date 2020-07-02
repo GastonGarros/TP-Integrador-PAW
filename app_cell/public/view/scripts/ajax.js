@@ -1,12 +1,14 @@
 // Variable con una función que genera una conexión AJAX genéricamente
 // Recibe la URL a la cual debe conectarse y la función que debe ejecutar con la respuesta que reciba del server
-var AJAX = function (URL, funcionDeCallback) {
+var x;
+var AJAX = function (URL, formData, funcionDeCallback,) {
 	var _URL = URL || {},
-    	_funcion = funcionDeCallback || {};
+    	_funcion = funcionDeCallback || {},
+    	_formData = formData || null;
 
-  	loadXMLDoc();
+  	ajaxRequest();
 
-	function loadXMLDoc() {
+	function ajaxRequest() {
  		var xmlhttp = new XMLHttpRequest();
 
 	    xmlhttp.onreadystatechange = function() {
@@ -24,8 +26,16 @@ var AJAX = function (URL, funcionDeCallback) {
 	      		console.error(this.responseText);*/
 	      	}
 	    };
-	    xmlhttp.open("GET",  _URL);
-	    xmlhttp.send();
+
+	    if (_formData == null) {
+		    xmlhttp.open("GET",  _URL);
+		    xmlhttp.send();
+		} else 
+
+	   	if (_formData != null) {
+	    	//Código para generar la petición AJAX pasandole el FormData
+
+	    }
 	}
 };
 
@@ -46,7 +56,7 @@ function nuevoElemento(tag, atributos, contenido) {
 
 //Función que recibe las imágenes del slider pidiéndoselas al servidor mediante AJAX, y luego crea los elementos HTML correspondientes y los inserta al DOM
 function sliderFirstLoad() {
-	var a = new AJAX("/productos", function(response) {
+	var a = new AJAX("/productos", null, function(response) {
 		var _response = response || {};
     	for (var i in _response) {
     		//aca voy creando cada imagen del slider. osea el figure con su img, figcaption y div
@@ -65,20 +75,33 @@ function sliderFirstLoad() {
 }
 
 //Función que pide mediante AJAX datos adicionales al servidor sobre el producto seleccionado
+//var x = document.querySelector(".sliderContainer figure[style='display: block;']"); //otra forma de capturar la imagen clickeada?
 function sliderOnClick(id) {
 	var _id = id || {},
 		e = e || window.event,
 		target = e.target || e.srcElement,
-		a = new AJAX("/productos/" + id, function(response){
+		a = new AJAX("/productos/" + id, null, function(response){
 			var _response = response || {},
 				slides = document.getElementsByClassName("slideDesc");
-				console.log(_response);
 			if (_response[0] != null) {
-				slides[slideIndex-1].innerHTML += " - " + "Precio: $"+ _response[0].PrecioVenta + " - " + "Stock: " + _response[0].Cantidad;
+				slides[slideIndex-1].innerHTML += " - " + "Precio: $"+ _response[0].PrecioVenta + " - " + "Descripción: " + _response[0].descripcion;
 			} else {
 				slides[slideIndex-1].innerHTML += " - " + "No hay información adicional.";
 			}
 		});
+		target.removeAttribute("onclick");
+}
+
+function userLogin() {
+	//Código para generar un FormData con los datos ingresados para el login. Los pasos a seguir son:
+	//1- Generar el FormData con los datos ingresados en el login usando:
+	//var formData = new FormData();
+	//formData.append(name, value);
+	//2- Crear una instancia de AJAX pasándole:
+	//Como 1er parámetro: la url "/login"
+	//Como 2do parámetro: el formData con los datos cargados
+	//Como 3er parámetro: la funcionDeCallback, la cual determina los pasos a seguir según la respuesta del servidor
+	console.log("Pendiente de implementar");
 }
 
 sliderFirstLoad(); //El slider se carga

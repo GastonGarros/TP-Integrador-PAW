@@ -45,6 +45,12 @@ document.addEventListener("DOMContentLoaded", function () { // Todo el código s
           }
       }
 
+
+      // #### Código para darle la funcionalidad a los diferentes botones ####
+      document.getElementById("diagButton").setAttribute("onclick", "activateDiagForm()");
+      document.querySelector(".navLogin form input[type='submit']").setAttribute("onclick", "userLogin()");
+
+
       // #### Código para el manejo del slider ####
       /*aux2 = document.getElementsByClassName("mySlide");//Testing
       console.log(aux2);//Testing*/
@@ -55,8 +61,9 @@ document.addEventListener("DOMContentLoaded", function () { // Todo el código s
             showDivs(1); // Dado que slideIndex se inicializa en 0, le sumo 1 la primera vez, para que la primera slide a mostrar sea siempre la primera
       }
 
-      // #### Código para darle la funcionalidad al botón del diagnóstico ####
-      //document.getElementById("diagButton").setAttribute("onclick", "activateDiagForm()");
+
+
+
 });
 
 
