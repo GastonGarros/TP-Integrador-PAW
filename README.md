@@ -43,7 +43,10 @@ La sección de contacto será una sección simple en la cual se le mostrará al 
 La única dependencia obligatoria para instalar es la librería de XML de PHP.
 
 sudo apt-get install php-xml
-Luego, clonamos la aplicación nos posicionamos en el directorio App_cell.
+
+Luego debemos ejecutar el script de base de datos en el directorio app_cell/db/sql/bytecell.sql.
+
+Se tiene que clonar el repositorio de la aplicación y nos posicionamos en el directorio App_cell.
 
 cd ~/TP-Integrador-PAW/app_cell
 
