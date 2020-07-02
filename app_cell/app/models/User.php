@@ -1,13 +1,16 @@
 <?php
 namespace App\Model;
 use App\Model\Validations;
+use App\Model\Session;
 class User  extends Persona {
 
   //Seteo la tabla 
  
    private $table = "user";
    private $primaryKey= "nro_doc";
-
+   private $session ;
+   private $mensaje;
+   private $rol;
   
 public function __construct(\PDO $db){
    $validations = new Validations();
@@ -36,7 +39,8 @@ public function deleteUser($valor){
 public function insertUser($params){
 
    if($this->validations->ValidUser($params['username'],$params['password'],$params['email'],$params['rol'])){
-   return parent::insert($this->table,$params);
+      $params['password'] = password_hash($params['password'],PASSWORD_DEFAULT);
+      return parent::insert($this->table,$params);
  }else{
     return $this->validations->getMensaje();
  }
@@ -56,37 +60,54 @@ public function updateUser($params){
     
 }
 
+private function hashLogin($user,$pass){
+   ///  hashBD se usan para verificar la contraseña
+   //$hashUser = password_hash($pass,PASSWORD_DEFAULT);
+  
+   $sentencia = $this->db->prepare("SELECT password, rol FROM user WHERE username = :user or email = :user");
+   $sentencia->execute(compact('user'));
+   $result = $sentencia->fetch();
+   $this->rol = $result['rol'];
+//verifica el pass extraido de la base de datos y compara 
+   if(password_verify($pass,$result['password'])){
+     
+      return true;
+  }else{
 
+   return false;
+  }
+   
+}
 
 public function login($params){
- /* session_start();
-  $_SESSION['name']='1';
-*/
 
 if($this->validations->ValidLogin($params['user'], $params['password'])){
-   return "entro";
+ 
+  if( $this->hashLogin($params['user'], $params['password'])){//usuario y password validos
+      $this->session = new Session();
+      $this->session->setSession('user',$params['user']); //guardo el ususario en la session
+      $this->session->setSession('rol',$this->rol); //agrego el rol a la clase para luego usarlo en la variable sesion
+      return  "Session iniciada con el usuario: ".$this->session->getSession('user');
+  }
 }else{
    //los parametros del usuario son incorrecto
    return $this->validations->getMensaje();
 }
 
-  
-
-  //return $this->validationLoggin($params['user']);
    
 }
-/*
-private function validationLoggin($params){
-   //retorno falso si no completaron los campos de user o pass
-   if(!isset($params['user'])|| ($params['user'] =="") || (strlen($params['pass']) >16) || (strlen($params['pass']) <8)|| ($params['pass']=="") || (!isset($params['pass'])) ){
-		
-		return false;
-	}else{
-
-   
-   return true;//isset($params['user']);
+//metodo que cierra la sesion
+public function logout(){
+   $this->session = new Session();
+   //si haya sesion iniciada cierra la sesion, sino envia un mensaje
+   if($this->session->exist('user')){
+      $this->session->closeSession();
+      $this->mensaje['mensaje'] = "sesion cerrada " ;
+      
+   }else{
+      $this->mensaje['mensaje'] = "sesion no iniciada";
+      
    }
-}*/
-
-
+   return $this->mensaje;
+}
 }

@@ -59,6 +59,8 @@ return function (App $app) {
     $app->post('/user/register', 'UserController:store');
     $app->put('/user', 'UserController:update');
     $app->post('/user/login', 'UserController:login');
+    $app->get('/logout', 'UserController:logout');
+    
  //   $app->get('/user/logout', 'UserController:logout');
     $app->delete('/user/{id}', 'UserController:deleteUser');  
 

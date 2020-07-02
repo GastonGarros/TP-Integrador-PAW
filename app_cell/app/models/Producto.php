@@ -76,6 +76,7 @@ public function productoItem($valor){
    INNER JOIN Stock on Producto.idProductos = Stock.Producto_idProducto
    where idProductos= :valor and estado=1 ");
    
+   
    $stmt->execute(compact('valor'));
    $arr = $stmt->fetchAll();
    if($arr){
@@ -100,9 +101,7 @@ private function agregarPath($arg){
             
                //agregao en el campo imagen la ruta de la imagen
                $value['imagen']=("view/".$value['imagen']);
-               
-           
-         
+          
          }
       
    }
@@ -123,11 +122,12 @@ public function busquedap($arg){
    $stmt->execute([$search]);
    $count = strval($stmt->rowcount());
  //limita la busqueda--- mejorar de alguna forma esta consulta con la anterior
-   $stmt= $this->db->prepare("SELECT * FROM Producto WHERE nombre LIKE ? and estado=1 LIMIT $pmin,$pmax");
+   $stmt= $this->db->prepare("SELECT idProductos, nombre, PrecioVenta, imagen
+     FROM Producto WHERE nombre LIKE ? and estado=1 LIMIT $pmin,$pmax");
    $stmt->execute([$search]);
 
    $arr = $stmt->fetchAll();
-   $arr=$this->agregarPath($arr);
+  // $arr=$this->agregarPath($arr);
    if(!$arr){
       $this->log->info("BUSQUEDA del los producto que contienen $search no exitosa ");
       return false;

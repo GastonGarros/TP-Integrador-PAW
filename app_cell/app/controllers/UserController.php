@@ -27,7 +27,7 @@ class UserController {
     public function store($request, $response, $args)
     {
         $params = $request->getParsedBody();
-        $id = $this->model->insert($params);
+        $id = $this->model->insertUser($params);
         $response->getBody()->write(\json_encode($params));
         return $response->withHeader('Content-Type', 'application/json');  
     }  
@@ -46,4 +46,11 @@ class UserController {
         $response->getBody()->write(\json_encode($id));
         return $response->withHeader('Content-Type', 'application/json');  
     } 
+
+    public function logout($request, $response, $args)
+    {
+        $log = $this->model->logout();
+        $response->getBody()->write(\json_encode($log));
+        return $response->withHeader('Content-Type', 'application/json');  
+    }
 }

@@ -47,7 +47,7 @@ class ProductoController{
         return $response->withHeader('Content-Type', 'application/json');  
     }
     public function mp ($request, $response,$args){
-     //require 'app/models/MercadoPAgo.php';
+        require 'app/models/MercadoPAgo.php';
      $params = $request->getParsedBody();
       $response->getBody()->write(\json_encode($params));
         return $response->withHeader('Content-Type', 'application/json');  

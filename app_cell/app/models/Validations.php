@@ -3,7 +3,7 @@ namespace App\Model;
 
 class Validations {
 
-private  $mesnaje;
+private  $mensaje;
 
 
 public function __construct(){
@@ -11,14 +11,14 @@ public function __construct(){
 
 }
 public function getMensaje(){
-	return $this->mesnaje;
+	return $this->mensaje;
 }
 
 
 //Validar documento
 public function ValDoc($doc){
 	if(!isset($doc)|| ($doc =="") || (strlen($doc)>16)){
-		$this->mesnaje['Error'] = "documento incorrecto";
+		$this->mensaje['Error'] = "documento incorrecto";
 		return false;
 	}
 	return isset($doc);
@@ -26,7 +26,7 @@ public function ValDoc($doc){
 //Validar nombre
 public function ValidNombre($nombre){
 	if(!isset($nombre)|| ($nombre =="")){
-		$this->mesnaje['Error'] = "Nombre incorrecto";
+		$this->mensaje['Error'] = "Nombre incorrecto";
 		return false;
 	}
 	return isset($nombre);
@@ -35,7 +35,7 @@ public function ValidNombre($nombre){
 //Validar nombre
 public function ValidApellido($apellido){
 	if(!isset($apellido)|| ($apellido =="")){
-		$this->mesnaje['Error'] = "Apellido incorrecto";
+		$this->mensaje['Error'] = "Apellido incorrecto";
 		return false;
 	}
 	return isset($apellido);
@@ -43,7 +43,7 @@ public function ValidApellido($apellido){
 //validar domicilio
 public function ValidDomicilio($domicilio){
 	if(!isset($domicilio)|| ($domicilio =="")){
-		$this->mesnaje['Error'] = "Domicilio incorrecto";
+		$this->mensaje['Error'] = "Domicilio incorrecto";
 		return false;
 	}
 	return isset($domicilio);
@@ -56,7 +56,7 @@ public function ValidEmail($email){
 	if (isset($email) && filter_var($email, FILTER_VALIDATE_EMAIL)){
 		$valid = true;
 	}else {
-		$this->mesnaje['Error'] = "Email incorrecto";
+		$this->mensaje['Error'] = "Email incorrecto";
 	}
 	return $valid;
 }
@@ -65,7 +65,7 @@ public function ValidEmail($email){
 //Validar tel
 public function ValidTel($tel){
 	if(!isset($tel)|| ($tel =="")){
-		$this->mesnaje['Error'] = "Telefono incorrecto";
+		$this->mensaje['Error'] = "Telefono incorrecto";
 		return false;
 	}
 	return isset($tel);
@@ -85,7 +85,7 @@ public function ValidNacim($nacim){
 	
 	} else {
 	
-		$this->mesnaje['Error'] = "Fecha Nacimiento incorrecto";	
+		$this->mensaje['Error'] = "Fecha Nacimiento incorrecto";	
 		
 		return false;
 	}
@@ -98,7 +98,7 @@ public function TypeDoc($type){
 	if (in_array($type, $typelist)){
 		return true;
 	} else {
-		$this->mesnaje['Error'] = "tipo documento incorrecto";	
+		$this->mensaje['Error'] = "tipo documento incorrecto";	
 		return false;
 	}
 }
@@ -106,7 +106,7 @@ public function TypeDoc($type){
 //validar user
 public function ValUser($user){
 	if(!isset($user)|| ($user =="")){
-		$this->mesnaje['Error'] = "User incorrecto";
+		$this->mensaje['Error'] = "User incorrecto";
 		return false;
 	}
 	return isset($user);
@@ -116,7 +116,7 @@ public function ValUser($user){
 //validar user
 public function ValPass($pass){
 	if(!isset($pass)|| ($pass =="")){
-		$this->mesnaje['Error'] = "Password incorrecto";
+		$this->mensaje['Error'] = "Password incorrecto";
 		return false;
 	}
 	return isset($pass);
@@ -129,7 +129,7 @@ public function ValidRol($rol){
 	if (in_array($rol, $rollist)){
 		return true;
 	} else {
-		$this->mesnaje['Error'] = "Rol incorrecto";	
+		$this->mensaje['Error'] = "Rol incorrecto";	
 		return false;
 	}
 }
@@ -177,23 +177,23 @@ public function ValidUser($user,$pass,$email,$rol){
 }
 public function ValidLogin($user,$pass){
 	if($user!=null){	
-		if(stristr("@",$user)===false){
+		if(strrpos($user,"@")===false){//se usa para saber si es un usuario o un mail lo que usa para ingresar
 			if($this->ValUser($user)&&$this->ValPass($pass)){
 				return true;
 			} else {
-				$this->mesnaje['Error'] = "User o Password incorrecto";
+				$this->mensaje['Error'] = "User o Password incorrecto";
 				return false;
 			}
 		}else{
-			if($this->ValPass($pass)&& $this->ValidEmail($email)){
+			if($this->ValPass($pass)&& $this->ValidEmail($user)){
 				return true;
 			} else {
-				$this->mesnaje['Error'] = "Email o Password incorrecto";
+				$this->mensaje['Error'] = "Email o Password incorrecto";
 				return false;
 			}
 		}
 	}else{
-		$this->mesnaje['Error'] = "User incorrecto";
+		$this->mensaje['Error'] = "User incorrecto";
 		return false;
 	}
 }

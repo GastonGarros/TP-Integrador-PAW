@@ -16,10 +16,13 @@ class Session
 
         $_SESSION[$name]=$value;
     }
+    public function exist($name){
+        return isset($_SESSION[$name]);
+    }
 //get de los valores de la session
-    public function getSession($name,$value){
+    public function getSession($name){
 
-        $_SESSION[$name]=$value;
+       return $_SESSION[$name];
     }
 //finaliza la session
     public function closeSession(){
