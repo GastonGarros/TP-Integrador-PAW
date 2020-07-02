@@ -38,18 +38,7 @@ para una breve descripcion del producto ordenados por mas visitados y con un lim
    $sentencia->execute();
    $producto = $sentencia->fetchAll();
 
-//agrego la imagen al resultado de la consulta
-/*  $p=array();
-  foreach($producto as $key => $val) {
-   //print "$key = $val <br>";
-   if($val['imagen']!=""){
-      //agregao en el campo imagen la ruta de la imagen
-      $val['imagen']=("view/".$val['imagen']);
-         
-   }
-   $p[$key]=$val;
-   
-}*/
+
 
 $this->log->info('listo todos los productos con descripcion de '.$this->table);
  return $producto;
@@ -78,13 +67,12 @@ public function insertProducto( $parameters){
         $this->log->info('Consulta el id '.$variable.' de '.$table);
         return $sentencia->fetch();
 
-        //return parent::findId($this->primaryKey,'6',$this->table);
-    
+        
 
 }
 //valor es el filtro del where
 public function productoItem($valor){
-   $stmt = $this->db->prepare("SELECT idProductos, nombre, PrecioVenta, tipo_publico, imagen, Cantidad FROM Producto 
+   $stmt = $this->db->prepare("SELECT idProductos, nombre, PrecioVenta, descripcion, imagen, Cantidad FROM Producto 
    INNER JOIN Stock on Producto.idProductos = Stock.Producto_idProducto
    where idProductos= :valor and estado=1 ");
    

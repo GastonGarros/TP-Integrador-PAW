@@ -58,16 +58,24 @@ public function updateUser($params){
 
 
 
-public function loggin($params){
+public function login($params){
  /* session_start();
   $_SESSION['name']='1';
 */
- return  $this->validationLoggin($params);
+
+if($this->validations->ValidLogin($params['user'], $params['password'])){
+   return "entro";
+}else{
+   //los parametros del usuario son incorrecto
+   return $this->validations->getMensaje();
+}
+
+  
 
   //return $this->validationLoggin($params['user']);
    
 }
-
+/*
 private function validationLoggin($params){
    //retorno falso si no completaron los campos de user o pass
    if(!isset($params['user'])|| ($params['user'] =="") || (strlen($params['pass']) >16) || (strlen($params['pass']) <8)|| ($params['pass']=="") || (!isset($params['pass'])) ){
@@ -78,7 +86,7 @@ private function validationLoggin($params){
    
    return true;//isset($params['user']);
    }
-}
+}*/
 
 
 }

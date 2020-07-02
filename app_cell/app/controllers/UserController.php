@@ -38,4 +38,12 @@ class UserController {
         $response->getBody()->write(\json_encode($rep));
         return $response->withHeader('Content-Type', 'application/json');  
     }
+
+    public function login($request, $response, $args)
+    {
+        $params = $request->getParsedBody();
+        $id = $this->model->login($params);
+        $response->getBody()->write(\json_encode($id));
+        return $response->withHeader('Content-Type', 'application/json');  
+    } 
 }

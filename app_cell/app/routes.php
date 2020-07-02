@@ -58,7 +58,7 @@ return function (App $app) {
     $app->get('/user/{id}', 'UserController:read');
     $app->post('/user/register', 'UserController:store');
     $app->put('/user', 'UserController:update');
-    $app->post('/loggin', 'UserController:loggin');
+    $app->post('/user/login', 'UserController:login');
  //   $app->get('/user/logout', 'UserController:logout');
     $app->delete('/user/{id}', 'UserController:deleteUser');  
 
@@ -68,10 +68,7 @@ return function (App $app) {
     $app->post('/personas', 'PersonaController:storePersona');
     $app->put('/personas', 'PersonaController:updatePersona');
     $app->delete('/personas/{id}', 'PersonaController:deletePersona');  
-     //Metodos sobre user
-    // $app->get('/user', 'BaseController:index');
-   // '/news[/{year}[/{month}]]'
-   //Metodos sobre Productos
+  
     $app->get('/productos', 'ProductoController:index');
     $app->get('/productos/busqueda/{search}[/{pag}]', 'ProductoController:busqueda');
     $app->get('/productos/{id}', 'ProductoController:read');

@@ -30,8 +30,8 @@ class Config
     {
         return [
             'base_url'      => 'https://api.mercadopago.com',
-            'CLIENT_ID'     => '2202850611772317',
-            'CLIENT_SECRET' => '5htZ7FUDRrj3HzFVEc0IpsJwMKyHAAkf',
+            'CLIENT_ID'     => '',
+            'CLIENT_SECRET' => '',
             'USER_ID'       => '',
             'APP_ID'        => '',
             'ACCESS_TOKEN'  => '',
@@ -190,5 +190,7 @@ class Config
         return $response['body'];
     }
 
-
+    public function getData(){
+        return $this->data;
+    }
 }

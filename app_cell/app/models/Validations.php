@@ -18,7 +18,7 @@ public function getMensaje(){
 //Validar documento
 public function ValDoc($doc){
 	if(!isset($doc)|| ($doc =="") || (strlen($doc)>16)){
-		$this->mesnaje['Error'] = "documento";
+		$this->mesnaje['Error'] = "documento incorrecto";
 		return false;
 	}
 	return isset($doc);
@@ -26,7 +26,7 @@ public function ValDoc($doc){
 //Validar nombre
 public function ValidNombre($nombre){
 	if(!isset($nombre)|| ($nombre =="")){
-		$this->mesnaje['Error'] = "Nombre";
+		$this->mesnaje['Error'] = "Nombre incorrecto";
 		return false;
 	}
 	return isset($nombre);
@@ -35,7 +35,7 @@ public function ValidNombre($nombre){
 //Validar nombre
 public function ValidApellido($apellido){
 	if(!isset($apellido)|| ($apellido =="")){
-		$this->mesnaje['Error'] = "Apellido";
+		$this->mesnaje['Error'] = "Apellido incorrecto";
 		return false;
 	}
 	return isset($apellido);
@@ -43,7 +43,7 @@ public function ValidApellido($apellido){
 //validar domicilio
 public function ValidDomicilio($domicilio){
 	if(!isset($domicilio)|| ($domicilio =="")){
-		$this->mesnaje['Error'] = "Domicilio";
+		$this->mesnaje['Error'] = "Domicilio incorrecto";
 		return false;
 	}
 	return isset($domicilio);
@@ -56,7 +56,7 @@ public function ValidEmail($email){
 	if (isset($email) && filter_var($email, FILTER_VALIDATE_EMAIL)){
 		$valid = true;
 	}else {
-		$this->mesnaje['Error'] = "Email";
+		$this->mesnaje['Error'] = "Email incorrecto";
 	}
 	return $valid;
 }
@@ -65,7 +65,7 @@ public function ValidEmail($email){
 //Validar tel
 public function ValidTel($tel){
 	if(!isset($tel)|| ($tel =="")){
-		$this->mesnaje['Error'] = "Telefono";
+		$this->mesnaje['Error'] = "Telefono incorrecto";
 		return false;
 	}
 	return isset($tel);
@@ -85,7 +85,7 @@ public function ValidNacim($nacim){
 	
 	} else {
 	
-		$this->mesnaje['Error'] = "Fecha Nacimiento";	
+		$this->mesnaje['Error'] = "Fecha Nacimiento incorrecto";	
 		
 		return false;
 	}
@@ -98,7 +98,7 @@ public function TypeDoc($type){
 	if (in_array($type, $typelist)){
 		return true;
 	} else {
-		$this->mesnaje['Error'] = "tipo documento";	
+		$this->mesnaje['Error'] = "tipo documento incorrecto";	
 		return false;
 	}
 }
@@ -106,7 +106,7 @@ public function TypeDoc($type){
 //validar user
 public function ValUser($user){
 	if(!isset($user)|| ($user =="")){
-		$this->mesnaje['Error'] = "User";
+		$this->mesnaje['Error'] = "User incorrecto";
 		return false;
 	}
 	return isset($user);
@@ -116,7 +116,7 @@ public function ValUser($user){
 //validar user
 public function ValPass($pass){
 	if(!isset($pass)|| ($pass =="")){
-		$this->mesnaje['Error'] = "Password";
+		$this->mesnaje['Error'] = "Password incorrecto";
 		return false;
 	}
 	return isset($pass);
@@ -125,11 +125,11 @@ public function ValPass($pass){
 
 //Validar tipo rol 
 public function ValidRol($rol){
-	$rollist = array ("gremio", "publico", "administrador", "");
+	$rollist = array ("gremio", "general", "administrador", "");
 	if (in_array($rol, $rollist)){
 		return true;
 	} else {
-		$this->mesnaje['Error'] = "Rol";	
+		$this->mesnaje['Error'] = "Rol incorrecto";	
 		return false;
 	}
 }
@@ -175,7 +175,28 @@ public function ValidUser($user,$pass,$email,$rol){
 		return false;
 	}
 }
-
+public function ValidLogin($user,$pass){
+	if($user!=null){	
+		if(stristr("@",$user)===false){
+			if($this->ValUser($user)&&$this->ValPass($pass)){
+				return true;
+			} else {
+				$this->mesnaje['Error'] = "User o Password incorrecto";
+				return false;
+			}
+		}else{
+			if($this->ValPass($pass)&& $this->ValidEmail($email)){
+				return true;
+			} else {
+				$this->mesnaje['Error'] = "Email o Password incorrecto";
+				return false;
+			}
+		}
+	}else{
+		$this->mesnaje['Error'] = "User incorrecto";
+		return false;
+	}
+}
 //Almacena una img valida y devuelve el path relativo de la misma
 //En el archivo README.md hay una explicacion con mayor detalle de lo que contiene cada variable
 public function saveImg($imgSubida){
@@ -196,4 +217,9 @@ public function saveImg($imgSubida){
 	}
 
 }
+
+
+
+
+
 ?>
